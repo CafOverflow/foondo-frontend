@@ -1,0 +1,391 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  color: inherit;
+}
+
+.back-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 36px;
+  top: 36px;
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* Login */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 70px;
+  justify-content: center;
+}
+
+.login-form-input {
+  text-align: center;
+  border: 0.5px solid #bbb;
+  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 10px;
+}
+
+.login-form-input:focus {
+  outline: none !important;
+  border: 1px solid #f6b26b;
+  background-color: #f5f5f5;
+}
+
+/* Menu */
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 36px;
+  height: 30px;
+  left: 320px;
+  top: 36px;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
+}
+
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
+}
+
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+/* Individual item */
+.bm-item {
+  display: inline-block;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Home */
+.home-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-header {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Fridge */
+.fridge-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.fridge-header {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Cook Book */
+.cookbook-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.cookbook-header {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Diet Book */
+.diet-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.diet-header {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Search */
+.message {
+  padding-top: 5px;
+  font-size: 12px;
+}
+
+.search-form {
+  margin: 10px 30px;
+}
+
+.search-term {
+  width: 100px;
+  border: 0.5px solid #bbb;
+
+  height: 18px;
+  font-weight: 300;
+  font-family: "Montserrat", sans-serif;
+  transition: ease-in-out, width 0.35s ease-in-out;
+}
+
+.search-term:focus {
+  outline: none !important;
+  border: 1px solid #f6b26b;
+  background-color: #f5f5f5;
+  width: 250px;
+}
+
+.div-search {
+  position: relative;
+}
+.div-search input {
+  text-indent: 30px;
+}
+.div-search .icon-search {
+  display: inline-block;
+  width: 14px;
+  position: relative;
+  left: 22px;
+  top: 2px;
+}
+
+.icon-search {
+  color: #999;
+}
+
+.icon-search :hover {
+  color: #f6b26b;
+}
+
+/* Recipes List  */
+.recipes-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.recipe-list {
+  max-width: 25%;
+  font-size: 10px;
+  margin: 20px;
+  word-wrap: break-word;
+}
+
+.recipe-list a {
+  text-decoration: none;
+  color: #333;
+}
+
+.icon-arrow {
+  padding: 0 5px 0 0;
+  color: #f6b26b;
+}
+
+.recipe-list h2 {
+  font-size: 14px;
+}
+
+.recipe-image {
+  max-width: 100%;
+}
+
+.recipe-servings {
+  font-size: 12;
+  font-weight: 300;
+}
+
+.icon-external-link {
+  margin-right: 0px;
+  color: #f6b26b;
+  margin-left: 5px;
+}
+
+.icon-external-link:hover {
+  color: #ba762e;
+}
+
+/* Recipe Card */
+.recipe-container {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto 50px;
+}
+
+.image-container {
+  max-height: 150px;
+  flex: 1;
+  height: 400px;
+}
+
+.bg-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+.recipe-info {
+  padding: 5px;
+}
+
+.recipe-ingredients {
+  list-style-type: none;
+  text-align: left;
+}
+
+.tags-container span {
+  border: 2px solid black;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 12px;
+  padding: 3px 10px;
+  margin: 5px;
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+/* Ingredients */
+.ingredients-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Diet  */
+.diet-dropdown {
+  margin: 10px;
+}
+
+/* Footer */
+.footer {
+  bottom: 0;
+  font-size: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 15px 0 0 0;
+  border-top: 0.7px solid #eee;
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.footer a {
+  color: #444;
+  margin: 3px;
+  transition: ease-in, width 0.4s ease-in-out;
+}
+
+.footer a:hover {
+  color: #f6b26b;
+  font-size: 15px;
+}
+
+.news-wrapper header,
+main,
+footer {
+  flex-shrink: 0;
+}
+
+#disclaimer {
+  font-size: 11px;
+  height: 30px;
+}
+
+#iconHeart {
+  padding: 0 7px;
+}
+
+#footer-cons {
+  height: 30px;
+}
+
+.caffeine {
+  color: #ba762e;
+}
+
+/* Fridge */
+.fridge-button {
+  max-width: 110px;
+  margin: 10px auto;
+}
+/* Recipe Card */
+.instruction-name {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Diet */
+.diet-button {
+  margin: 10px;
+}
