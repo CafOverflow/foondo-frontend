@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { useContext } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import BackButton from './BackButton';
+import { AppContext } from './Context';
 
 // or provide option from DB
 const diets = [
@@ -34,39 +35,20 @@ const intolerances = [
 
 const animatedComponents = makeAnimated();
 
-class Diet extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedDiet: null,
-      selectedIntolerances: null,
-    };
-  }
+function Diet() {
+  const {
+    state, handleChangeDiet, handleChangeIntolerancies,
+  } = useContext(AppContext);
 
   // create a function that will sent the infomation to DB
- saveDiet = () => {
+  const saveDiet = () => {
 
- }
+  };
 
- saveIntolerances = () => {
+  const saveIntolerances = () => {
 
- }
+  };
 
-handleChangeDiet = selectedDiet => {
-  this.setState(
-    { selectedDiet },
-  );
-};
-
-handleChangeIntolerancies = selectedIntolerances => {
-  this.setState(
-    { selectedIntolerances },
-  );
-};
-
-render() {
-  const { selectedDiet } = this.state;
-  const { selectedIntolerances } = this.state;
   return (
     <div className="diet-wrapper">
       <header className="diet-header">
@@ -81,12 +63,15 @@ render() {
           closeMenuOnSelect={false}
           components={animatedComponents}
           isMulti
-          onChange={this.handleChangeDiet}
+          onChange={handleChangeDiet}
           options={diets} />
-        <button type="button" className="diet-button" onClick={this.saveDiet}>Save</button>
+        <button type="button" className="diet-button" onClick={saveDiet}>Save</button>
       </div>
       <div>My diet:</div>
-      <div>{selectedDiet && selectedDiet.map(option => <p>{option.value}</p>)}</div>
+      <div>
+        {state.selectedDiet && state.selectedDiet
+          .map(option => <p>{option.value}</p>)}
+      </div>
       <br />
       <div>Choose your intolerances</div>
       <div className="diet-dropdown">
@@ -94,15 +79,17 @@ render() {
           closeMenuOnSelect={false}
           components={animatedComponents}
           isMulti
-          onChange={this.handleChangeIntolerancies}
+          onChange={handleChangeIntolerancies}
           options={intolerances} />
-        <button type="button" className="diet-button" onClick={this.saveIntolerances}>Save</button>
+        <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
       </div>
       <div>My Intolerancies:</div>
-      <div>{selectedIntolerances && selectedIntolerances.map(option => <p>{option.value}</p>)}</div>
+      <div>
+        {state.selectedIntolerances && state.selectedIntolerances
+          .map(option => <p>{option.value}</p>)}
+      </div>
     </div>
   );
-}
 }
 
 export default Diet;

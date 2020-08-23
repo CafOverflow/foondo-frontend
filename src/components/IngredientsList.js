@@ -29,8 +29,7 @@ function IngredientsList(props) {
 }
 
 IngredientsList.propTypes = {
-  ingredients: PropTypes.shape([
-  ]),
+  ingredients: PropTypes.instanceOf(Array),
 };
 
 IngredientsList.defaultProps = {

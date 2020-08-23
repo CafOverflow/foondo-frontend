@@ -11,13 +11,7 @@ function SmallIngredientCard(props) {
 }
 
 SmallIngredientCard.propTypes = {
-  ingredient: PropTypes.shape({
-    name: PropTypes.string,
-  }),
-};
-
-SmallIngredientCard.defaultProps = {
-  ingredient: {},
+  ingredient: PropTypes.string.isRequired,
 };
 
 export default SmallIngredientCard;
