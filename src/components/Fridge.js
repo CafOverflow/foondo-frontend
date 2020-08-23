@@ -20,13 +20,13 @@ function Fridge() {
     await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`)
       .then(data => data.json())
       .then(json => {
-        showRecipes({ recipes: json });
+        showRecipes(json);
       });
     setState({
       showComponent: true,
     });
   };
-
+  console.log(state.recipes);
   return (
     <div className="fridge-wrapper">
       <header className="fridge-header">
@@ -49,7 +49,7 @@ function Fridge() {
       {localState.showComponent
         ? <RecipesList />
         : null}
-      {/* <RecipesList recipes={state.recipes} /> */}
+      <RecipesList recipes={state.recipes} />
     </div>
   );
 }

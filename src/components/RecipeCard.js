@@ -1,9 +1,11 @@
 /* eslint-disable react/no-danger */
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 import BackButton from './BackButton';
+import { AppContext } from './Context';
 
 const filterByID = (id, props) => props.recipes.find(recipe => recipe.id === Number(id));
 
@@ -14,8 +16,10 @@ const getRecipeID = props => {
 };
 
 function RecipeCard(props) {
+  const {
+    favouriteRecipe, unfavouriteRecipe,
+  } = useContext(AppContext);
   const recipe = getRecipeID(props);
-  // const { summary } = recipe;
   return (
     <div className="recipe-container">
       <BackButton />
@@ -102,8 +106,12 @@ function RecipeCard(props) {
         </div>
         {/* add functionality to buttons to save a recipe as favourite in DB and delete */}
         <div className="buttons-container">
-          <button type="button">Add to Favourites</button>
-          <button type="button">Delete From Favourites</button>
+          <button type="button" onClick={() => { favouriteRecipe(recipe); }}>Add to Favourites</button>
+          <Link to="/recipes">
+            <button type="button" onClick={() => { unfavouriteRecipe(recipe); }}>Delete From Favourites</button>
+          </Link>
+          <Route
+            path="/recipes" />
         </div>
       </div>
     </div>

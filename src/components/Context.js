@@ -6,6 +6,7 @@ function AppContextProvider({ children }) {
   const [state, setState] = useState({
     ingredients: [],
     recipes: [],
+    favouriteRecipes: [],
     selectedDiet: null,
     selectedIntolerances: null,
   });
@@ -29,10 +30,24 @@ function AppContextProvider({ children }) {
   const showRecipes = recipe => {
     setState(prevState => ({
       ...prevState,
-      recipes: [
-        ...prevState.recipes,
+      recipes: recipe,
+    }));
+  };
+
+  const favouriteRecipe = recipe => {
+    setState(prevState => ({
+      ...prevState,
+      favouriteRecipes: [
+        ...prevState.favouriteRecipes,
         recipe,
       ],
+    }));
+  };
+
+  const unfavouriteRecipe = recipe => {
+    setState(prevState => ({
+      ...prevState,
+      favouriteRecipes: prevState.favouriteRecipes.filter(r => r.id !== recipe.id),
     }));
   };
 
@@ -58,6 +73,8 @@ function AppContextProvider({ children }) {
       handleChangeDiet,
       handleChangeIntolerancies,
       deleteIngredient,
+      favouriteRecipe,
+      unfavouriteRecipe,
     }}>
       {children}
     </AppContext.Provider>

@@ -1,21 +1,18 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   BrowserRouter,
   Switch,
   Route,
 } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SmallRecipeCard from './SmallRecipeCard';
 import RecipeCard from './RecipeCard';
 import BackButton from './BackButton';
-import { AppContext } from './Context';
 
-// eslint-disable-next-line react/prefer-stateless-function
-function RecipesList() {
-  const {
-    state,
-  } = useContext(AppContext);
-  if (state.recipes) {
+function RecipesList(mainProps) {
+  const { recipes } = mainProps;
+  if (recipes) {
     return (
       <BrowserRouter>
         <div className="recipes-wrapper">
@@ -27,11 +24,11 @@ function RecipesList() {
                 <RecipeCard
                     // eslint-disable-next-line react/jsx-props-no-spreading
                   {...props}
-                  recipes={state.recipes.recipes} />
+                  recipes={recipes} />
               )} />
           </Switch>
           <div className="recipes-wrapper">
-            {state.recipes.recipes && state.recipes.recipes
+            {recipes && recipes
               .map(recipe => <SmallRecipeCard recipe={recipe} key={recipe.id} />)}
           </div>
         </div>
@@ -46,5 +43,13 @@ function RecipesList() {
     </div>
   );
 }
+
+RecipesList.propTypes = {
+  recipes: PropTypes.instanceOf(Array),
+};
+
+RecipesList.defaultProps = {
+  recipes: [],
+};
 
 export default RecipesList;
