@@ -26,7 +26,6 @@ function Fridge() {
       showComponent: true,
     });
   };
-  console.log(state.recipes);
   return (
     <div className="fridge-wrapper">
       <header className="fridge-header">

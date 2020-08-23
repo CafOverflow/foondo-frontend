@@ -9,7 +9,16 @@ function AppContextProvider({ children }) {
     favouriteRecipes: [],
     selectedDiet: null,
     selectedIntolerances: null,
+    userName: null,
   });
+
+  const handleNameChange = name => {
+    setState(prevState => ({
+      ...prevState,
+      userName: name,
+    }));
+  };
+
   const showIngredients = ingredient => {
     setState(prevState => ({
       ...prevState,
@@ -68,6 +77,7 @@ function AppContextProvider({ children }) {
   return (
     <AppContext.Provider value={{
       state,
+      handleNameChange,
       showIngredients,
       showRecipes,
       handleChangeDiet,
