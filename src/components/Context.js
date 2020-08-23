@@ -19,6 +19,13 @@ function AppContextProvider({ children }) {
     }));
   };
 
+  const deleteIngredient = ingredient => {
+    setState(prevState => ({
+      ...prevState,
+      ingredients: prevState.ingredients.filter(i => i !== ingredient),
+    }));
+  };
+
   const showRecipes = recipe => {
     setState(prevState => ({
       ...prevState,
@@ -45,7 +52,12 @@ function AppContextProvider({ children }) {
 
   return (
     <AppContext.Provider value={{
-      state, showIngredients, showRecipes, handleChangeDiet, handleChangeIntolerancies,
+      state,
+      showIngredients,
+      showRecipes,
+      handleChangeDiet,
+      handleChangeIntolerancies,
+      deleteIngredient,
     }}>
       {children}
     </AppContext.Provider>
