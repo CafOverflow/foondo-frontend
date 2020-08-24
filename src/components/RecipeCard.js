@@ -9,7 +9,7 @@ import { AppContext } from './Context';
 
 const filterByID = (id, props) => props.recipes.find(recipe => recipe.id === Number(id));
 
-const getRecipeID = props => {
+const getRecipeByID = props => {
   const recipeID = props.match.url.slice(9);
   const recipe = filterByID(recipeID, props);
   return recipe;
@@ -19,7 +19,7 @@ function RecipeCard(props) {
   const {
     favouriteRecipe, unfavouriteRecipe,
   } = useContext(AppContext);
-  const recipe = getRecipeID(props);
+  const recipe = getRecipeByID(props);
   return (
     <div className="recipe-container">
       <BackButton />
@@ -108,7 +108,7 @@ function RecipeCard(props) {
         <div className="buttons-container">
           <button type="button" onClick={() => { favouriteRecipe(recipe); }}>Add to Favourites</button>
           <Link to="/recipes">
-            <button type="button" onClick={() => { unfavouriteRecipe(recipe); }}>Delete From Favourites</button>
+            <button type="button" onClick={() => { unfavouriteRecipe(recipe.id); }}>Delete From Favourites</button>
           </Link>
           <Route
             path="/recipes" />

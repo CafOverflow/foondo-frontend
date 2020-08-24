@@ -44,20 +44,40 @@ function AppContextProvider({ children }) {
   };
 
   const favouriteRecipe = recipe => {
-    setState(prevState => ({
-      ...prevState,
-      favouriteRecipes: [
-        ...prevState.favouriteRecipes,
-        recipe,
-      ],
-    }));
+    const jwt = localStorage.getItem('jwt');
+    fetch('http://localhost:3001/recipes/bookmarks/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwt}`,
+      },
+      body: JSON.stringify(recipe),
+    })
+      .then(() => {
+        setState(prevState => ({
+          ...prevState,
+          favouriteRecipes: [
+            ...prevState.favouriteRecipes,
+            recipe,
+          ],
+        }));
+      });
   };
 
-  const unfavouriteRecipe = recipe => {
-    setState(prevState => ({
-      ...prevState,
-      favouriteRecipes: prevState.favouriteRecipes.filter(r => r.id !== recipe.id),
-    }));
+  const unfavouriteRecipe = recipeId => {
+    const jwt = localStorage.getItem('jwt');
+    fetch(`http://localhost:3001/recipes/bookmarks/${recipeId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(() => {
+        setState(prevState => ({
+          ...prevState,
+          favouriteRecipes: prevState.favouriteRecipes.filter(r => r.id !== recipeId),
+        }));
+      });
   };
 
   const handleChangeDiet = selectedDiet => {
