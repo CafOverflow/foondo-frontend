@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretSquareLeft } from '@fortawesome/free-solid-svg-icons';
 
-const BackButton = () => {
+function BackButton() {
   const history = useHistory();
   return (
     <button className="back-button" type="button" onClick={() => history.goBack()}>
@@ -13,6 +13,6 @@ const BackButton = () => {
         className="icon-arrow" />
     </button>
   );
-};
+}
 
 export default BackButton;

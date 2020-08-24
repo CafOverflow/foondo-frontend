@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,65 +12,59 @@ import RecipesList from './RecipesList';
 import Fridge from './Fridge';
 import CookBook from './CookBook';
 
-class AppMenu extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      menuOpen: false,
-    };
-  }
+function AppMenu() {
+  const [state, setState] = useState({
+    menuOpen: false,
+  });
 
-  handleStateChange = state => {
-    this.setState({ menuOpen: state.isOpen });
-  }
+  const handleStateChange = () => {
+    setState({ menuOpen: state.isOpen });
+  };
 
-  closeMenu = () => {
-    this.setState({ menuOpen: false });
-  }
+  const closeMenu = () => {
+    setState({ menuOpen: false });
+  };
 
-  render() {
-    const { menuOpen } = this.state;
-    return (
-      <Router>
-        <Menu
-          right
-          isOpen={menuOpen}
-          onStateChange={state => this.handleStateChange(state)}>
-          <div>
-            <Link onClick={this.closeMenu} exact="true" to="/">Home</Link>
-          </div>
-          <div>
-            <Link onClick={this.closeMenu} to="/diet">Diet</Link>
-          </div>
-          <div>
-            <Link onClick={this.closeMenu} to="/fridge">My Fridge</Link>
-          </div>
-          <div>
-            <Link onClick={this.closeMenu} to="/cookbook">My Cook Book</Link>
-          </div>
-        </Menu>
+  return (
+    <Router>
+      <Menu
+        right
+        isOpen={state.menuOpen}
+        onStateChange={localState => handleStateChange(localState)}>
         <div>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/recipes">
-              <RecipesList />
-            </Route>
-            <Route path="/diet">
-              <Diet />
-            </Route>
-            <Route path="/fridge">
-              <Fridge />
-            </Route>
-            <Route path="/cookbook">
-              <CookBook />
-            </Route>
-          </Switch>
+          <Link onClick={closeMenu} exact="true" to="/">Home</Link>
         </div>
-      </Router>
-    );
-  }
+        <div>
+          <Link onClick={closeMenu} to="/diet">Diet</Link>
+        </div>
+        <div>
+          <Link onClick={closeMenu} to="/fridge">My Fridge</Link>
+        </div>
+        <div>
+          <Link onClick={closeMenu} to="/cookbook">My Cook Book</Link>
+        </div>
+      </Menu>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/recipes">
+            <RecipesList />
+          </Route>
+          <Route path="/diet">
+            <Diet />
+          </Route>
+          <Route path="/fridge">
+            <Fridge />
+          </Route>
+          <Route path="/cookbook">
+            <CookBook />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default AppMenu;

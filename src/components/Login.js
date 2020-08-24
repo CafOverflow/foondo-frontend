@@ -1,53 +1,56 @@
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AppContext } from './Context';
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-  }
+function Login() {
+  const [localState, setState] = useState({
+    value: '',
+    // password: '',
+  });
 
-  handleValueChange = event => {
-    this.setState({ value: event.target.value });
-  }
+  const {
+    handleNameChange,
+  } = useContext(AppContext);
 
-  handleSubmit = event => {
-    const { value } = this.state;
+  const handleValueChange = event => {
+    setState({ value: event.target.value });
+  };
+
+  const handleSubmit = event => {
     event.preventDefault();
-    if (!value) {
+    if (!localState.value) {
       // eslint-disable-next-line no-alert
       window.alert('Please enter correct information!');
     } else {
-      this.setState({ value: '' });
+      handleNameChange(localState.value);
+      setState({ value: '' });
     }
-  }
+  };
 
-  render() {
-    const { value } = this.state;
-    return (
-      <form onSubmit={this.handleSubmit} className="login-form">
-        <h4>Login</h4>
-        <input
-          className="login-form-input"
-          type="text"
-          value={value}
-          onChange={this.handleValueChange}
-          placeholder="Enter your username" />
-        <input
-          className="login-form-input"
-          type="text"
-          value={value}
-          onChange={this.handleValueChange}
-          placeholder="Enter your password" />
-
-        <input
-          className="login-form-button"
-          type="submit"
-          value="Login" />
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleSubmit} className="login-form">
+      <h4>Login</h4>
+      <input
+        className="login-form-input"
+        type="text"
+        value={localState.value}
+        onChange={handleValueChange}
+        placeholder="Enter your username" />
+      {/* <input
+        className="login-form-input"
+        type="text"
+        value={localState.password}
+        onChange={handleValueChange}
+        placeholder="Enter your password" /> */}
+      <input
+        className="login-form-button"
+        type="submit"
+        value="Login" />
+      <Link exact="true" to="/">
+        <button type="button">My App</button>
+      </Link>
+    </form>
+  );
 }
 
 export default Login;
