@@ -11,6 +11,10 @@ function Login() {
     password: '',
   });
 
+  // const [loginState, setLoginState] = useState({
+  //   isLogged: false,
+  // });
+
   const {
     handleEmailChange,
   } = useContext(AppContext);
@@ -45,16 +49,19 @@ function Login() {
       body: JSON.stringify(body),
     }).then(res => res.json())
       .then(json => localStorage.setItem('jwt', json.jwt));
+    // setLoginState({
+    //   isLogged: true,
+    // });
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     if (!emailState.value || !passwordState.password) {
       // eslint-disable-next-line no-alert
       window.alert('Please enter correct information!');
     } else {
       handleEmailChange(emailState.value);
-      sendData();
+      await sendData();
       setEmail({
         value: '',
       });

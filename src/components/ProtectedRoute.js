@@ -11,7 +11,7 @@ function ProtectedRoute({ Component }) {
       render={() => (
         localStorage.getItem('jwt')
           ? <Component />
-          : <Redirect to="/login" />
+          : <Redirect to="/welcome" />
       )} />
   );
 }
