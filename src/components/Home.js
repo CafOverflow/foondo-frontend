@@ -10,13 +10,18 @@ function Home() {
   const {
     state,
   } = useContext(AppContext);
+
+  const logOut = () => {
+    localStorage.clear();
+  };
+
   return (
     <div className="home-wrapper">
       <header className="home-header">
         <BackButton />
         <h1>Foondo</h1>
       </header>
-      {state.userName
+      {localStorage.userName
           && (
           <div>
             Hello,
@@ -24,6 +29,9 @@ function Home() {
             !
           </div>
           )}
+      <Link exact="true" to="/">
+        <button type="button" onClick={logOut}>Log Out</button>
+      </Link>
       <div>Find a recipe!</div>
       <Search />
       <div>

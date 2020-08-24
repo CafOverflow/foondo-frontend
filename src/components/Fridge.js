@@ -15,9 +15,14 @@ function Fridge() {
 
   // make a request to backend that calls the API to load results of relevant recipes
   // result: RecipesList component to be rendered with data from the response from backend
+  const jwt = localStorage.getItem('jwt');
   const fetchRecipesByIngredients = async () => {
     const query = state.ingredients.join();
-    await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`)
+    await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
       .then(data => data.json())
       .then(json => {
         showRecipes(json);

@@ -8,9 +8,10 @@ import {
 import { slide as Menu } from 'react-burger-menu';
 import Home from './Home';
 import Diet from './Diet';
-import RecipesList from './RecipesList';
 import Fridge from './Fridge';
 import CookBook from './CookBook';
+import ProtectedRoute from './ProtectedRoute';
+import EntryRouter from './EntryRouter';
 
 function AppMenu() {
   const [state, setState] = useState({
@@ -46,21 +47,11 @@ function AppMenu() {
       </Menu>
       <div>
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/recipes">
-            <RecipesList />
-          </Route>
-          <Route path="/diet">
-            <Diet />
-          </Route>
-          <Route path="/fridge">
-            <Fridge />
-          </Route>
-          <Route path="/cookbook">
-            <CookBook />
-          </Route>
+          <Route exact path="/welcome" component={EntryRouter} />
+          <ProtectedRoute exact path="/" Component={Home} />
+          <ProtectedRoute path="/diet" Component={Diet} />
+          <ProtectedRoute path="/fridge" Component={Fridge} />
+          <ProtectedRoute path="/cookbook" Component={CookBook} />
         </Switch>
       </div>
     </Router>

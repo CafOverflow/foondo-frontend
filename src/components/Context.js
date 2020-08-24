@@ -12,7 +12,7 @@ function AppContextProvider({ children }) {
     userName: null,
   });
 
-  const handleNameChange = name => {
+  const handleEmailChange = name => {
     setState(prevState => ({
       ...prevState,
       userName: name,
@@ -77,7 +77,7 @@ function AppContextProvider({ children }) {
   return (
     <AppContext.Provider value={{
       state,
-      handleNameChange,
+      handleEmailChange,
       showIngredients,
       showRecipes,
       handleChangeDiet,
