@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { AppContext } from './Context';
 
 function Login() {
+  const changeRoute = () => {
+    window.location.href = '/';
+  };
+
   const [emailState, setEmail] = useState({
     value: '',
   });
@@ -12,7 +15,7 @@ function Login() {
   });
 
   // const [loginState, setLoginState] = useState({
-  //   isLogged: false,
+  //   isLogged: null,
   // });
 
   const {
@@ -62,6 +65,7 @@ function Login() {
     } else {
       handleEmailChange(emailState.value);
       await sendData();
+      changeRoute();
       setEmail({
         value: '',
       });
@@ -90,9 +94,6 @@ function Login() {
         className="login-form-button"
         type="submit"
         value="Login" />
-      <Link exact="true" to="/">
-        <button type="button">My App</button>
-      </Link>
     </form>
   );
 }
