@@ -6,12 +6,10 @@ function Login() {
   const [emailState, setEmail] = useState({
     value: '',
   });
-  console.log(emailState);
 
   const [passwordState, setPassword] = useState({
     password: '',
   });
-  console.log(passwordState);
 
   const {
     handleEmailChange,
