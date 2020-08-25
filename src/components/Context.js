@@ -88,18 +88,52 @@ function AppContextProvider({ children }) {
       });
   };
 
-  const handleChangeDiet = selectedDiet => {
-    setState(prevState => ({
-      ...prevState,
-      selectedDiet,
-    }));
+  const getBookmarkedRecipes = () => {
+    const jwt = localStorage.getItem('jwt');
+    fetch('http://localhost:3001/recipes/bookmarks/', {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(data => data.json())
+      .then(json => {
+        setState(prevState => ({
+          ...prevState,
+          favouriteRecipes: json,
+        }));
+      });
   };
 
-  const handleChangeIntolerancies = selectedIntolerances => {
-    setState(prevState => ({
-      ...prevState,
-      selectedIntolerances,
-    }));
+  const getDietFromDB = async () => {
+    const jwt = localStorage.getItem('jwt');
+    await fetch('http://localhost:3001/user/diet', {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(data => data.json())
+      .then(json => {
+        setState(prevState => ({
+          ...prevState,
+          selectedDiet: json.diet,
+        }));
+      });
+  };
+
+  const getIntoleranciesFromDB = () => {
+    const jwt = localStorage.getItem('jwt');
+    fetch('http://localhost:3001/user/intolerances', {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(data => data.json())
+      .then(json => {
+        setState(prevState => ({
+          ...prevState,
+          selectedIntolerances: json,
+        }));
+      });
   };
 
   return (
@@ -108,11 +142,12 @@ function AppContextProvider({ children }) {
       handleEmailChange,
       showIngredients,
       showRecipes,
-      handleChangeDiet,
-      handleChangeIntolerancies,
       deleteIngredient,
       favouriteRecipe,
       unfavouriteRecipe,
+      getBookmarkedRecipes,
+      getDietFromDB,
+      getIntoleranciesFromDB,
     }}>
       {children}
     </AppContext.Provider>

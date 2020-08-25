@@ -59,10 +59,10 @@ function Home() {
         {localState.showComponent
           ? <RecipesList recipes={localState.recipes} />
           : null}
-        <div className="link">
+        <div className="link link-ingredients">
           <Link to="/fridge">INGREDIENTS</Link>
         </div>
-        <div className="link">
+        <div className="link link-cookbook">
           <Link to="/cookbook">COOKBOOK</Link>
         </div>
       </div>

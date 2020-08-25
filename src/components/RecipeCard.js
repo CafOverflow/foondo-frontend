@@ -7,7 +7,8 @@ import PropTypes from 'prop-types';
 import BackButton from './BackButton';
 import { AppContext } from './Context';
 
-const filterByID = (id, props) => props.recipes.find(recipe => recipe.id === Number(id));
+// eslint-disable-next-line eqeqeq
+const filterByID = (id, props) => props.recipes.find(recipe => recipe.id == id);
 
 const getRecipeByID = props => {
   const recipeID = props.match.url.slice(9);
