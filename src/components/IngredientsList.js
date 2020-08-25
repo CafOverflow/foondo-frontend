@@ -20,10 +20,8 @@ function IngredientsList(props) {
     );
   }
   return (
-    <div>
-      <div className="recipes-wrapper">
-        <div>No ingredients yet</div>
-      </div>
+    <div className="recipes-wrapper">
+      <div>No ingredients yet</div>
     </div>
   );
 }

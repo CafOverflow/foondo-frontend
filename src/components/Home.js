@@ -1,12 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   Link,
 } from 'react-router-dom';
 import Search from './Search';
 import BackButton from './BackButton';
 import { AppContext } from './Context';
+import RecipesList from './RecipesList';
 
 function Home() {
+  const [localState, setState] = useState({
+    recipes: [],
+    showComponent: false,
+  });
+
   const {
     state,
   } = useContext(AppContext);
@@ -15,13 +21,30 @@ function Home() {
     localStorage.clear();
   };
 
+  const jwt = localStorage.getItem('jwt');
+  const fetchRecipes = async query => {
+    await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(data => data.json())
+      .then(json => {
+        setState({
+          recipes: json,
+          showComponent: true,
+        });
+      });
+  };
+
   return (
-    <div className="home-wrapper">
-      <header className="home-header">
+    <div className="wrapper">
+      <header className="header">
         <BackButton />
         <h1>Foondo</h1>
       </header>
-      {localStorage.userName
+      <div className="page-wrapper">
+        {localStorage.userName
           && (
           <div>
             Hello,
@@ -29,16 +52,19 @@ function Home() {
             !
           </div>
           )}
-      <Link exact="true" to="/">
-        <button type="button" onClick={logOut}>Log Out</button>
-      </Link>
-      <div>Find a recipe!</div>
-      <Search />
-      <div>
-        <Link to="/fridge">My Fridge</Link>
-      </div>
-      <div>
-        <Link to="/cookbook">My Cook Book</Link>
+        <Link exact="true" to="/">
+          <button type="button" onClick={logOut}>Log Out</button>
+        </Link>
+        <Search placeholder="a recipe" fetchRecipes={fetchRecipes} />
+        {localState.showComponent
+          ? <RecipesList recipes={localState.recipes} />
+          : null}
+        <div className="link link-ingredients">
+          <Link to="/fridge">INGREDIENTS</Link>
+        </div>
+        <div className="link link-cookbook">
+          <Link to="/cookbook">COOKBOOK</Link>
+        </div>
       </div>
     </div>
   );

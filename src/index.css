@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -14,6 +14,11 @@ code {
 
 a {
   color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
 }
 
 .back-button {
@@ -31,26 +36,82 @@ a {
   outline: inherit;
 }
 
+/* Welcome page*/
+
+.entry-wrapper {
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 550px;
+  background: url('./img/foondo_home_bg_mobile.jpg') no-repeat;
+  background-size: 435px;
+}
+
+.entry-button {
+  background-color: white;
+  color: #af4733;
+  text-decoration: none;
+  margin: 5px auto;
+  padding: 5px 0;
+  min-width: 200px;
+  border: 1px solid white;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+.entry-button:hover {
+  cursor: pointer;
+}
+
+.entry-button-hover {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+}
+
+.entry-button-hover:hover {
+  background-color: #af4733;
+  color: white;
+  border: 1px solid #af4733;
+}
+
 /* Login */
 .login-form {
   display: flex;
   flex-direction: column;
-  margin: 10px 70px;
   justify-content: center;
+  background-color: white;
+  background: rgba(255, 255, 255, 0.5);
+  width: 100%;
+  height: 100%;
+  padding-bottom: 330px;
+}
+
+.login-title {
+  color: #af4733;
+  font-size: 25px;
 }
 
 .login-form-input {
+  font-size: 16px;
   text-align: center;
-  border: 0.5px solid #bbb;
-  font-weight: 300;
-  font-family: "Montserrat", sans-serif;
-  margin-bottom: 10px;
+  border: 1px solid lightgrey;
 }
 
-.login-form-input:focus {
+.entry-button:focus {
   outline: none !important;
-  border: 1px solid #f6b26b;
-  background-color: #f5f5f5;
+  border: 1px solid #af4733;
+}
+
+.login-form-button {
+  font-size: 16px;
+  background-color: #af4733;
+  color: white;
+  border: 1px solid #af4733;
+}
+
+.redirect-link {
+  color: #af4733;
+  cursor: pointer;
 }
 
 /* Menu */
@@ -122,52 +183,61 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 /* Home */
-.home-wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
 }
 
-.home-header {
+.header {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  box-shadow: 0 5px 11px -7px lightgrey;
+}
+
+.link a {
+ text-decoration: none;
+ color: white;
+}
+
+.link-ingredients {
+  background: url('./img/ingredients.jpg') no-repeat;
+  background-size: 435px;
+  width: 100%;
+  min-height: 30%;
+}
+
+.link-cookbook {
+  background: url('./img/cookbook_bg.jpg') no-repeat;
+  background-size: 435px;
+  width: 100%;
+  min-height: 30%;
+}
+
+/* Layouts */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+}
+
+.page-header {
+  color: #af4733;
 }
 
 /* Fridge */
-.fridge-wrapper {
-  display: flex;
-  flex-direction: column;
+.fridge-button {
+  max-width: 110px;
+  margin: 10px auto;
 }
 
-.fridge-header {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+/* Diet */
+.diet-button {
+  margin: 10px;
 }
 
 /* Cook Book */
-.cookbook-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.cookbook-header {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-/* Diet Book */
-.diet-wrapper {
-  display: flex;
-  flex-direction: column;
-}
-
-.diet-header {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
 
 /* Search */
 .message {
@@ -180,20 +250,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .search-term {
-  width: 100px;
-  border: 0.5px solid #bbb;
-
+  min-width: 200px;
+  border: 0.5px solid lightgrey;
+  border-radius: 15px;
   height: 18px;
   font-weight: 300;
   font-family: "Montserrat", sans-serif;
-  transition: ease-in-out, width 0.35s ease-in-out;
 }
 
 .search-term:focus {
   outline: none !important;
-  border: 1px solid #f6b26b;
-  background-color: #f5f5f5;
-  width: 250px;
+  border: 0.5px solid #af4733;
 }
 
 .div-search {
@@ -215,7 +282,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .icon-search :hover {
-  color: #f6b26b;
+  color: #af4733;
 }
 
 /* Recipes List  */
@@ -240,7 +307,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .icon-arrow {
   padding: 0 5px 0 0;
-  color: #f6b26b;
+  color: #af4733;
 }
 
 .recipe-list h2 {
@@ -258,7 +325,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .icon-external-link {
   margin-right: 0px;
-  color: #f6b26b;
+  color: #af4733;
   margin-left: 5px;
 }
 
@@ -267,12 +334,15 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 /* Recipe Card */
+.instruction-name {
+  font-weight: 600;
+  font-size: 18px;
+}
+
 .recipe-container {
   width: 100%;
   background-color: #fff;
   border-radius: 10px;
-  -webkit-box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
-    0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
     0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -7px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -336,18 +406,19 @@ span:hover {
   justify-content: space-around;
   padding: 15px 0 0 0;
   border-top: 0.7px solid #eee;
-  margin-top: 30px;
+  /* margin-top: 30px; */
   font-size: 14px;
 }
 
 .footer a {
-  color: #444;
+  color: #af4733;
   margin: 3px;
   transition: ease-in, width 0.4s ease-in-out;
 }
 
 .footer a:hover {
-  color: #f6b26b;
+  /* color: #f6b26b; */
+  color: #af4733;
   font-size: 15px;
 }
 
@@ -371,21 +442,5 @@ footer {
 }
 
 .caffeine {
-  color: #ba762e;
-}
-
-/* Fridge */
-.fridge-button {
-  max-width: 110px;
-  margin: 10px auto;
-}
-/* Recipe Card */
-.instruction-name {
-  font-weight: 600;
-  font-size: 18px;
-}
-
-/* Diet */
-.diet-button {
-  margin: 10px;
+  color: #af4733;
 }

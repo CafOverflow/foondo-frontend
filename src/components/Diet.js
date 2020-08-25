@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import BackButton from './BackButton';
 import { AppContext } from './Context';
 
-// or provide option from DB
 const diets = [
   { value: 'Gluten Free', label: 'Gluten Free' },
   { value: 'Ketogenic', label: 'Ketogenic' },
@@ -37,56 +36,105 @@ const animatedComponents = makeAnimated();
 
 function Diet() {
   const {
-    state, handleChangeDiet, handleChangeIntolerancies,
+    state, getDietFromDB, getIntoleranciesFromDB,
   } = useContext(AppContext);
 
-  // create a function that will sent the infomation to DB
-  const saveDiet = () => {
+  const [dietState, setDiet] = useState({
+    selectedDiet: null,
+  });
 
+  const [intolerancesState, setIntolerances] = useState({
+    selectedIntolerances: null,
+  });
+
+  const handleChangeDiet = selectedDiet => {
+    setDiet(
+      selectedDiet,
+    );
+  };
+
+  const saveDiet = selectedDiet => {
+    if (selectedDiet[0]) {
+      const diet = selectedDiet[0].value;
+      const jwt = localStorage.getItem('jwt');
+      fetch('http://localhost:3001/user/diet', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${jwt}`,
+        },
+        body: JSON.stringify({
+          diet,
+        }),
+      });
+    }
+  };
+
+  const handleChangeIntolerancies = selectedIntolerances => {
+    setIntolerances(
+      selectedIntolerances,
+    );
   };
 
   const saveIntolerances = () => {
-
+    const jwt = localStorage.getItem('jwt');
+    fetch('http://localhost:3001/user/intolerances', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwt}`,
+      },
+      body: JSON.stringify({
+        intolerances: intolerancesState,
+      }),
+    });
   };
 
+  useEffect(() => {
+    getDietFromDB();
+    getIntoleranciesFromDB();
+    return () => {
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="diet-wrapper">
-      <header className="diet-header">
+    <div className="wrapper">
+      <header className="header">
         <BackButton />
         <h1>Diet</h1>
       </header>
-      <div>Choose your diet</div>
-      {/* set the diet preferences for a user in DB and use them with every API call
-      Every API endpoint asking for an diet parameter can be fed with any of these diets. */}
-      <div className="diet-dropdown">
-        <Select
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          isMulti
-          onChange={handleChangeDiet}
-          options={diets} />
-        <button type="button" className="diet-button" onClick={saveDiet}>Save</button>
-      </div>
-      <div>My diet:</div>
-      <div>
-        {state.selectedDiet && state.selectedDiet
-          .map(option => <p>{option.value}</p>)}
-      </div>
-      <br />
-      <div>Choose your intolerances</div>
-      <div className="diet-dropdown">
-        <Select
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          isMulti
-          onChange={handleChangeIntolerancies}
-          options={intolerances} />
-        <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
-      </div>
-      <div>My Intolerancies:</div>
-      <div>
-        {state.selectedIntolerances && state.selectedIntolerances
-          .map(option => <p>{option.value}</p>)}
+      <div className="page-wrapper">
+        <div>Choose your diet</div>
+        <div className="diet-dropdown">
+          <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            onChange={handleChangeDiet}
+            options={diets} />
+          <button type="button" className="diet-button" onClick={saveDiet(dietState)}>Save</button>
+          <button type="button" className="diet-button" onClick={() => window.location.reload()}>Update</button>
+        </div>
+        <div>My diet:</div>
+        {state.selectedDiet}
+        <br />
+        <div>Choose your intolerances</div>
+        <div className="diet-dropdown">
+          <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            onChange={handleChangeIntolerancies}
+            options={intolerances} />
+          <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
+          <button type="button" className="diet-button" onClick={() => window.location.reload()}>Update</button>
+        </div>
+        <div>My Intolerancies:</div>
+        {state.selectedIntolerances
+        && state.selectedIntolerances.intolerances
+          // eslint-disable-next-line react/no-array-index-key
+          .map((option, index) => <p key={index}>{option.value}</p>)}
       </div>
     </div>
   );
