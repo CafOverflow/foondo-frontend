@@ -77,23 +77,23 @@ function Login() {
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
-      <h4>Login</h4>
+      <div className="login-title">welcome back!</div>
       <input
-        className="login-form-input"
+        className="entry-button login-form-input"
         type="text"
         value={emailState.value}
         onChange={handleValueChange}
-        placeholder="Enter your e-mail" />
+        placeholder="e-mail" />
       <input
-        className="login-form-input"
-        type="text"
+        className="entry-button login-form-input"
+        type="password"
         value={passwordState.password}
         onChange={handlePasswordChange}
-        placeholder="Enter your password" />
+        placeholder="password" />
       <input
-        className="login-form-button"
+        className="entry-button login-form-button"
         type="submit"
-        value="Login" />
+        value="sign in" />
     </form>
   );
 }

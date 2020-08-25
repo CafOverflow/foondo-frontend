@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -14,6 +14,10 @@ code {
 
 a {
   color: inherit;
+}
+
+button {
+  font-family: "Montserrat", sans-serif;
 }
 
 .back-button {
@@ -31,6 +35,42 @@ a {
   outline: inherit;
 }
 
+/* Welcome page*/
+
+.entry-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+}
+
+.entry-button {
+  background-color: white;
+  color: #af4733;
+  text-decoration: none;
+  margin: 5px auto;
+  padding: 5px 0;
+  min-width: 200px;
+  border: 1px solid white;
+  border-radius: 15px;
+  font-size: 20px;
+}
+
+.entry-button:hover {
+  cursor: pointer;
+}
+
+.entry-button-hover {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+}
+
+.entry-button-hover:hover {
+  background-color: #af4733;
+  color: white;
+  border: 1px solid #af4733;
+}
+
 /* Login */
 .login-form {
   display: flex;
@@ -39,18 +79,32 @@ a {
   justify-content: center;
 }
 
-.login-form-input {
-  text-align: center;
-  border: 0.5px solid #bbb;
-  font-weight: 300;
-  font-family: "Montserrat", sans-serif;
-  margin-bottom: 10px;
+.login-title {
+  color: #af4733;
+  font-size: 25px;
 }
 
-.login-form-input:focus {
+.login-form-input {
+  font-size: 16px;
+  text-align: center;
+  border: 1px solid lightgrey;
+}
+
+.entry-button:focus {
   outline: none !important;
-  border: 1px solid #f6b26b;
-  background-color: #f5f5f5;
+  border: 1px solid #af4733;
+}
+
+.login-form-button {
+  font-size: 16px;
+  background-color: #af4733;
+  color: white;
+  border: 1px solid #af4733;
+}
+
+.redirect-link {
+  color: #af4733;
+  cursor: pointer;
 }
 
 /* Menu */

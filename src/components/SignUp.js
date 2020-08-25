@@ -1,25 +1,36 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
 function SignUp() {
+  const changeRouteToLogin = () => {
+    window.location.href = '/login';
+  };
+
   return (
     <form className="login-form">
-      <h4>Sign Up</h4>
+      <div className="login-title">sign up</div>
       <input
-        className="login-form-input"
+        className="entry-button login-form-input"
         type="text"
-        placeholder="Enter your name" />
+        placeholder="email" />
       <input
-        className="login-form-input"
-        type="text"
-        placeholder="Enter your e-mail" />
+        className="entry-button login-form-input"
+        type="password"
+        placeholder="password" />
       <input
-        className="login-form-input"
-        type="text"
-        placeholder="Enter your password" />
+        className="entry-button login-form-input"
+        type="password"
+        placeholder="confirm password" />
       <input
-        className="login-form-button"
+        className="entry-button login-form-button"
         type="submit"
-        value="SignUp" />
+        value="sign up" />
+      <div>
+        Already a member?
+        <a className="redirect-link" onClick={changeRouteToLogin}> Sign in</a>
+      </div>
     </form>
   );
 }
