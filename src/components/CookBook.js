@@ -11,12 +11,15 @@ function CookBook() {
     state,
   } = useContext(AppContext);
   return (
-    <div className="cookbook-wrapper">
-      <header className="cookbook-header">
+    <div className="wrapper">
+      <header className="header">
         <BackButton />
         <h1>My Cook Book</h1>
       </header>
-      <RecipesList recipes={state.favouriteRecipes} />
+      <div className="page-wrapper">
+        <div className="page-header">My Cookbook</div>
+        <RecipesList recipes={state.favouriteRecipes} />
+      </div>
     </div>
   );
 }

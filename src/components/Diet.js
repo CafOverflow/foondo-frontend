@@ -50,43 +50,45 @@ function Diet() {
   };
 
   return (
-    <div className="diet-wrapper">
-      <header className="diet-header">
+    <div className="wrapper">
+      <header className="header">
         <BackButton />
         <h1>Diet</h1>
       </header>
-      <div>Choose your diet</div>
-      {/* set the diet preferences for a user in DB and use them with every API call
+      <div className="page-wrapper">
+        <div>Choose your diet</div>
+        {/* set the diet preferences for a user in DB and use them with every API call
       Every API endpoint asking for an diet parameter can be fed with any of these diets. */}
-      <div className="diet-dropdown">
-        <Select
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          isMulti
-          onChange={handleChangeDiet}
-          options={diets} />
-        <button type="button" className="diet-button" onClick={saveDiet}>Save</button>
-      </div>
-      <div>My diet:</div>
-      <div>
-        {state.selectedDiet && state.selectedDiet
-          .map(option => <p>{option.value}</p>)}
-      </div>
-      <br />
-      <div>Choose your intolerances</div>
-      <div className="diet-dropdown">
-        <Select
-          closeMenuOnSelect={false}
-          components={animatedComponents}
-          isMulti
-          onChange={handleChangeIntolerancies}
-          options={intolerances} />
-        <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
-      </div>
-      <div>My Intolerancies:</div>
-      <div>
-        {state.selectedIntolerances && state.selectedIntolerances
-          .map(option => <p>{option.value}</p>)}
+        <div className="diet-dropdown">
+          <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            onChange={handleChangeDiet}
+            options={diets} />
+          <button type="button" className="diet-button" onClick={saveDiet}>Save</button>
+        </div>
+        <div>My diet:</div>
+        <div>
+          {state.selectedDiet && state.selectedDiet
+            .map(option => <p>{option.value}</p>)}
+        </div>
+        <br />
+        <div>Choose your intolerances</div>
+        <div className="diet-dropdown">
+          <Select
+            closeMenuOnSelect={false}
+            components={animatedComponents}
+            isMulti
+            onChange={handleChangeIntolerancies}
+            options={intolerances} />
+          <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
+        </div>
+        <div>My Intolerancies:</div>
+        <div>
+          {state.selectedIntolerances && state.selectedIntolerances
+            .map(option => <p>{option.value}</p>)}
+        </div>
       </div>
     </div>
   );

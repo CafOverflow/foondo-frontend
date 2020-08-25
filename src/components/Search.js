@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { AppContext } from './Context';
 
-function Search() {
+function Search(props) {
+  const { placeholder } = props;
+  const { fetchRecipes } = props;
   const [state, setState] = useState({
     value: '',
     message: '',
@@ -26,7 +29,11 @@ function Search() {
     }
     // a function (coming from the props) that calls the backend
     // to add a new item into User's Ingredients table in DB
-    showIngredients(value);
+    if (placeholder === 'a recipe') {
+      fetchRecipes(value);
+    } else {
+      showIngredients(value);
+    }
     setState({ value: '' });
   };
 
@@ -41,7 +48,7 @@ function Search() {
           type="text"
           value={state.value}
           onChange={handleValueChange}
-          placeholder="Search..." />
+          placeholder={`find ${placeholder}...`} />
       </div>
       <div className="message" name="Message">
         {state.message}
@@ -49,5 +56,10 @@ function Search() {
     </form>
   );
 }
+
+Search.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  fetchRecipes: PropTypes.func.isRequired,
+};
 
 export default Search;

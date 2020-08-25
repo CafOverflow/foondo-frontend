@@ -47,17 +47,17 @@ function AppMenu() {
           <Link onClick={closeMenu} to="/cookbook">My Cook Book</Link>
         </div>
       </Menu>
-      <div>
-        <Switch>
-          <Route path="/welcome" component={EntryRouter} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
-          <ProtectedRoute exact path="/" Component={Home} />
-          <ProtectedRoute path="/diet" Component={Diet} />
-          <ProtectedRoute path="/fridge" Component={Fridge} />
-          <ProtectedRoute path="/cookbook" Component={CookBook} />
-        </Switch>
-      </div>
+
+      <Switch>
+        <Route path="/welcome" component={EntryRouter} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={SignUp} />
+        <ProtectedRoute exact path="/" Component={Home} />
+        <ProtectedRoute path="/diet" Component={Diet} />
+        <ProtectedRoute path="/fridge" Component={Fridge} />
+        <ProtectedRoute path="/cookbook" Component={CookBook} />
+      </Switch>
+
     </Router>
   );
 }

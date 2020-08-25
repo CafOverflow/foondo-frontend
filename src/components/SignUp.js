@@ -9,29 +9,31 @@ function SignUp() {
   };
 
   return (
-    <form className="login-form">
-      <div className="login-title">sign up</div>
-      <input
-        className="entry-button login-form-input"
-        type="text"
-        placeholder="email" />
-      <input
-        className="entry-button login-form-input"
-        type="password"
-        placeholder="password" />
-      <input
-        className="entry-button login-form-input"
-        type="password"
-        placeholder="confirm password" />
-      <input
-        className="entry-button login-form-button"
-        type="submit"
-        value="sign up" />
-      <div>
-        Already a member?
-        <a className="redirect-link" onClick={changeRouteToLogin}> Sign in</a>
-      </div>
-    </form>
+    <div className="entry-wrapper">
+      <form className="login-form">
+        <div className="login-title">sign up</div>
+        <input
+          className="entry-button login-form-input"
+          type="text"
+          placeholder="email" />
+        <input
+          className="entry-button login-form-input"
+          type="password"
+          placeholder="password" />
+        <input
+          className="entry-button login-form-input"
+          type="password"
+          placeholder="confirm password" />
+        <input
+          className="entry-button login-form-button"
+          type="submit"
+          value="sign up" />
+        <div>
+          Already a member?
+          <a className="redirect-link" onClick={changeRouteToLogin}> Sign in</a>
+        </div>
+      </form>
+    </div>
   );
 }
 

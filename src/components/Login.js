@@ -76,25 +76,27 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <div className="login-title">welcome back!</div>
-      <input
-        className="entry-button login-form-input"
-        type="text"
-        value={emailState.value}
-        onChange={handleValueChange}
-        placeholder="e-mail" />
-      <input
-        className="entry-button login-form-input"
-        type="password"
-        value={passwordState.password}
-        onChange={handlePasswordChange}
-        placeholder="password" />
-      <input
-        className="entry-button login-form-button"
-        type="submit"
-        value="sign in" />
-    </form>
+    <div className="entry-wrapper">
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="login-title">welcome back!</div>
+        <input
+          className="entry-button login-form-input"
+          type="text"
+          value={emailState.value}
+          onChange={handleValueChange}
+          placeholder="e-mail" />
+        <input
+          className="entry-button login-form-input"
+          type="password"
+          value={passwordState.password}
+          onChange={handlePasswordChange}
+          placeholder="password" />
+        <input
+          className="entry-button login-form-button"
+          type="submit"
+          value="sign in" />
+      </form>
+    </div>
   );
 }
 

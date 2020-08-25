@@ -32,28 +32,34 @@ function Fridge() {
     });
   };
   return (
-    <div className="fridge-wrapper">
-      <header className="fridge-header">
+    <div className="wrapper">
+      <header className="header">
         <BackButton />
         <h1>My Fridge</h1>
       </header>
-      {/* pass to the Search component a function
+      <div className="page-wrapper">
+        <div className="page-header">My Ingredients</div>
+        {/* pass to the Search component a function
         as a prop that will handle the request to backend (+request to API)
          to load the list of the relevant ingredients
          + create button that will add an ingredient to the DB */}
-      <Search />
-      {/* ingredients list component should be rendered with data from DB */}
-      <IngredientsList ingredients={state.ingredients} />
-      <button
-        onClick={fetchRecipesByIngredients}
-        type="button"
-        className="fridge-button">
-        I want to cook!
-      </button>
-      {localState.showComponent
-        ? <RecipesList />
-        : null}
-      <RecipesList recipes={state.recipes} />
+        <Search placeholder="an ingredient" />
+        {/* ingredients list component should be rendered with data from DB */}
+        <IngredientsList ingredients={state.ingredients} />
+        {state.ingredients.length > 0
+          && (
+            <button
+              onClick={fetchRecipesByIngredients}
+              type="button"
+              className="fridge-button">
+              I want to cook!
+            </button>
+          )}
+        {localState.showComponent
+          ? <RecipesList />
+          : null}
+        <RecipesList recipes={state.recipes} />
+      </div>
     </div>
   );
 }
