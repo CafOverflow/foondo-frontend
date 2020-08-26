@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import RecipesList from './RecipesList';
-import BackButton from './BackButton';
+import Header from './Header';
 import { AppContext } from './Context';
 
 function CookBook() {
@@ -17,9 +17,9 @@ function CookBook() {
   return (
     <div className="wrapper">
       <header className="header">
-        <BackButton />
-        <h1>My Cook Book</h1>
+        <Header />
       </header>
+      <h1>My Cook Book</h1>
       <div className="page-wrapper">
         <div className="page-header">My Cookbook</div>
         <RecipesList recipes={state.favouriteRecipes} />
