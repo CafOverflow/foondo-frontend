@@ -46,12 +46,7 @@ function AppContextProvider({ children }) {
   const favouriteRecipe = recipe => {
     const jwt = localStorage.getItem('jwt');
     const recipeForFetch = {
-      recipe: {
-        id: recipe.id,
-        title: recipe.title,
-        sourceUrl: recipe.sourceUrl,
-        image: recipe.image,
-      },
+      recipe,
     };
     fetch('http://localhost:3001/recipes/bookmarks/', {
       method: 'POST',
