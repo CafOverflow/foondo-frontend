@@ -214,6 +214,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   display: flex;
   flex-direction: column;
   min-height: 90%;
+  justify-content: space-between;
 }
 
 .home_wrapper a{
@@ -248,7 +249,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin: 30px 0;
 
   /* Set a specific height */
-  height: 190px;
+  height: 150px;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
@@ -269,6 +270,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+}
+
+.link-ingredients p{
+  color:white;
+  font-size: 30px;
+  padding-top: 50px;
+}
+
+.link-cookbook p{
+  color:white;
+  font-size: 30px;
+  padding-top: 50px;
 }
 
 /* Layouts */
@@ -317,7 +331,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   min-width: 200px;
   border: 0.5px solid lightgrey;
   border-radius: 15px;
-  height: 18px;
+  height: 30px;
   font-weight: 300;
   font-family: "Montserrat", sans-serif;
 }
