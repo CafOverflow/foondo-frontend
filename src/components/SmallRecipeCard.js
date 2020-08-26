@@ -3,7 +3,7 @@ import {
   Link,
 } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGripLinesVertical } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
 import PropTypes from 'prop-types';
 
 function SmallRecipeCard(mainProps) {
@@ -13,21 +13,21 @@ function SmallRecipeCard(mainProps) {
       <Link to={`/recipes/${recipe.id}`}>
         <article>
           <img className="recipe-image" src={recipe.image} alt={recipe.title} />
-          <h2>
-            <FontAwesomeIcon icon={faGripLinesVertical} id="icon-arrow" className="icon-arrow" />
-            {recipe.title}
-          </h2>
+          <div className="recipe-title">
+            <span>
+              {recipe.title}
+            </span>
+          </div>
           {recipe.readyInMinutes && recipe.servings && (
             <div className="recipe-info">
-              <span className="recipe-time">
-                Cooking Time:
-                {recipe.readyInMinutes}
-                min
-              </span>
-              <br />
               <span className="recipe-servings">
                 Servings:
-                {recipe.servings}
+                {` ${recipe.servings}`}
+              </span>
+              <span className="recipe-time">
+                <FontAwesomeIcon icon={faClock} id="icon-clock" className="fa-icon" />
+                {recipe.readyInMinutes}
+                min
               </span>
             </div>
           )}

@@ -1,10 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+@font-face {
+  font-family: sheenline;
+  src: url('../src/style/sheenline.ttf');
+  font-weight: lighter;
+}
+
 body {
   margin: 0;
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url('./img/bg_drawings_gray.png') repeat-y;
+  background-size: 100%;
 }
 
 code {
@@ -21,12 +29,16 @@ button {
   font-family: "Montserrat", sans-serif;
 }
 
+.fa-icon{
+  color: #525252;
+}
+
 .back-button {
   position: fixed;
   width: 36px;
   height: 30px;
   left: 36px;
-  top: 36px;
+  top: 26px;
   background: none;
   color: inherit;
   border: none;
@@ -118,15 +130,16 @@ button {
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 36px;
-  height: 30px;
-  left: 320px;
-  top: 36px;
+  width: 24px;
+  height: 20px;
+  /* left: 300px; */
+  right: 40px;
+  top: 34px;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: #bbb;
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -142,7 +155,7 @@ button {
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: #fff;
 }
 
 /*
@@ -156,7 +169,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: #373a47;
+  background: #ae4433;
   padding: 2.5em 1.5em 0;
   font-size: 1.15em;
 }
@@ -168,7 +181,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: #b8b7ad;
+  color: #fff;
   padding: 0.8em;
 }
 
@@ -191,8 +204,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .header {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
   box-shadow: 0 5px 11px -7px lightgrey;
+  background-color: #fff;
+  height: 80px;
+}
+
+.header h1{
+  color: #525252;
+  font-size: 60px;
+  font-family: sheenline; 
+  margin: 20px 0px;
 }
 
 .link a {
@@ -204,14 +225,31 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background: url('./img/ingredients.jpg') no-repeat;
   background-size: 435px;
   width: 100%;
+  margin: 30px 0;
   min-height: 30%;
+
+  /* Set a specific height */
+  height: 500px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .link-cookbook {
   background: url('./img/cookbook_bg.jpg') no-repeat;
   background-size: 435px;
   width: 100%;
+  margin: 30px 0;
   min-height: 30%;
+  /* Set a specific height */
+  height: 500px;
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 /* Layouts */
@@ -289,15 +327,20 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .recipes-wrapper {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
 }
 
 .recipe-list {
-  max-width: 25%;
+  max-width: 38%;
   font-size: 10px;
   margin: 20px;
   word-wrap: break-word;
+  border-radius: 10px;
+  background-color:#fff;
+  -webkit-box-shadow: 0px 10px 13px 1px #999;
+  -moz-box-shadow: 0px 10px 13px 1px #999;
+  box-shadow: 0px 10px 13px 1px #999;
 }
 
 .recipe-list a {
@@ -316,6 +359,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .recipe-image {
   max-width: 100%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.recipe-title{
+  margin: 10px 10px 0 10px;
+  font-weight: bold;
+  font-size: 13px
+}
+
+.recipe-info {
+  margin: 5px 10px 15px 10px;
+}
+
+#icon-heart{
+  margin-left: 10px;
 }
 
 .recipe-servings {
@@ -331,6 +390,15 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .icon-external-link:hover {
   color: #ba762e;
+}
+
+#icon-clock{
+  padding: 0 1.5px 0 10px;
+}
+
+.fa-heart{
+  color: #e85677;
+  font-size: 16px
 }
 
 /* Recipe Card */
@@ -352,7 +420,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .image-container {
-  max-height: 150px;
+  max-height: 10px;
   flex: 1;
   height: 400px;
 }
@@ -362,10 +430,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-repeat: no-repeat;
   width: 100%;
   height: 100%;
-}
-
-.recipe-info {
-  padding: 5px;
 }
 
 .recipe-ingredients {
