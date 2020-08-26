@@ -7,6 +7,7 @@ import Header from './Header';
 import { AppContext } from './Context';
 
 const diets = [
+  { value: 'None', label: 'None' },
   { value: 'Ketogenic', label: 'Ketogenic' },
   { value: 'Vegetarian', label: 'Vegetarian' },
   { value: 'Lacto-Vegetarian', label: 'Lacto-Vegetarian' },
