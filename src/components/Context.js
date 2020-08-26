@@ -110,7 +110,7 @@ function AppContextProvider({ children }) {
       .then(json => {
         setState(prevState => ({
           ...prevState,
-          selectedDiet: json.diet,
+          selectedDiet: json.diet.replace(/ /g, ''),
         }));
       });
   };
@@ -126,7 +126,7 @@ function AppContextProvider({ children }) {
       .then(json => {
         setState(prevState => ({
           ...prevState,
-          selectedIntolerances: json,
+          selectedIntolerances: json.intolerances.map(i => i.value),
         }));
       });
   };
