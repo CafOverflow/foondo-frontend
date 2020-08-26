@@ -7,6 +7,7 @@ import IngredientsList from './IngredientsList';
 import RecipesList from './RecipesList';
 import Header from './Header';
 import { AppContext } from './Context';
+import { fetchFoondoApi, apiPaths } from './FoondoApi';
 
 function Fridge() {
   const [localState, setState] = useState({
@@ -27,16 +28,10 @@ function Fridge() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const jwt = localStorage.getItem('jwt');
-  const fetchRecipesByIngredients = () => {
+  const fetchRecipesByIngredients = async () => {
     const ingredients = state.ingredients.map(i => i.name).join();
-
-    const query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}`;
-    fetch(query, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    const query = `?query=${ingredients}`;
+    fetchFoondoApi('GET', `${apiPaths.recipesComplexSearch}${query}`)
       .then(data => data.json())
       .then(json => {
         showRecipes(json);
@@ -56,19 +51,15 @@ function Fridge() {
 
   const fetchRecipesByIngredientsAndDiet = async () => {
     const ingredients = state.ingredients.map(i => i.name).join();
-    let query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}`;
+    let query = `?query=${ingredients}`;
 
     if (state.selectedIntolerances) {
       const intolerances = state.selectedIntolerances.join();
-      query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}&diet=${state.selectedDiet}&intolerances=${intolerances}`;
+      query = `?query=${ingredients}&diet=${state.selectedDiet}&intolerances=${intolerances}`;
     } else {
-      query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}&diet=${state.selectedDiet}`;
+      query = `?query=${ingredients}&diet=${state.selectedDiet}`;
     }
-    await fetch(query, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    await fetchFoondoApi('GET', `${apiPaths.recipesComplexSearch}${query}`)
       .then(data => data.json())
       .then(json => {
         showRecipes(json);

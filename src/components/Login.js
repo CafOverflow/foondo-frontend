@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { AppContext } from './Context';
+import { login } from './FoondoApi';
 
 function Login() {
   const changeRoute = () => {
@@ -42,15 +43,8 @@ function Login() {
   };
 
   const sendData = async () => {
-    await fetch('http://localhost:3001/login', {
-      mode: 'cors',
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(body),
-    }).then(res => res.json())
+    await login(body)
+      .then(res => res.json())
       .then(json => localStorage.setItem('jwt', json.jwt));
     // setLoginState({
     //   isLogged: true,
