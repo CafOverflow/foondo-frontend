@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-danger */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -10,15 +10,16 @@ import BackButton from './BackButton';
 import { AppContext } from './Context';
 
 // eslint-disable-next-line eqeqeq
-const filterByID = (id, props) => props.recipes.find(recipe => recipe.id == id);
+const filterByID = (id, recipes) => recipes.find(recipe => recipe.id == id);
 
-const getRecipeByID = props => {
-  const recipeID = props.match.url.slice(9);
-  const recipe = filterByID(recipeID, props);
+const getRecipeByID = recipes => {
+  // const recipeID = props.match.url.slice(9);
+  const recipeID = (window.location.href).split('/')[4];
+  const recipe = filterByID(recipeID, recipes);
   return recipe;
 };
 
-const summary = recipe => <p dangerouslySetInnerHTML={{ __html: recipe.summary }} />;
+// const summary = recipe => <p dangerouslySetInnerHTML={{ __html: recipe.summary }} />;
 
 const ingredientList = extendedIngredients => (
   <div>
@@ -81,11 +82,21 @@ const instructionsList = (instructions, sourceUrl) => (
   </div>
 );
 
+console.log('not entered the function');
+
 function RecipeCard(props) {
+  console.log('entered function');
+
+  useEffect(() => {
+    console.log('effect');
+  });
+
   const {
-    favouriteRecipe, unfavouriteRecipe,
+    state, favouriteRecipe, unfavouriteRecipe,
   } = useContext(AppContext);
-  const recipe = getRecipeByID(props);
+  console.log('context', state.recipes);
+  // const recipe = getRecipeByID(state.recipes);
+  const recipe = getRecipeByID(props.recipes);
   return (
     <div className="recipe-container">
       <BackButton />
@@ -108,7 +119,7 @@ function RecipeCard(props) {
             {recipe.servings}
           </small>
         </div>
-        {recipe.summary && summary(recipe)}
+        {/* {recipe.summary && summary(recipe)} */}
         {recipe.extendedIngredients && ingredientList(recipe.extendedIngredients)}
         {recipe.analyzedInstructions && instructionsList(recipe.analyzedInstructions, recipe.sourceUrl)}
 
