@@ -115,7 +115,7 @@ function AppContextProvider({ children }) {
   };
 
   const sendSingleIngredient = ingredient => {
-    fetchFoondoApi('GET', `${apiPaths.recipeBookmarks}${ingredient}`)
+    fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
       .then(data => data.json())
       .then(ingredients => ingredients[0])
       .then(ingredientObject => {
@@ -133,15 +133,7 @@ function AppContextProvider({ children }) {
   };
 
   const deleteSingleIngredient = ingredientId => {
-    const jwt = localStorage.getItem('jwt');
-    fetch('http://localhost:3001/user/fridge', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify({ ingredientIds: [ingredientId] }),
-    })
+    fetchFoondoApi('DELETE', apiPaths.userFridge, { ingredientIds: [ingredientId] })
       .then(() => {
         setState(prevState => ({
           ...prevState,
