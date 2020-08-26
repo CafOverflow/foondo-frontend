@@ -5,7 +5,6 @@ import BackButton from './BackButton';
 import { AppContext } from './Context';
 
 const diets = [
-  { value: 'Gluten Free', label: 'Gluten Free' },
   { value: 'Ketogenic', label: 'Ketogenic' },
   { value: 'Vegetarian', label: 'Vegetarian' },
   { value: 'Lacto-Vegetarian', label: 'Lacto-Vegetarian' },
@@ -117,7 +116,7 @@ function Diet() {
           <button type="button" className="diet-button" onClick={() => window.location.reload()}>Update</button>
         </div>
         <div>My diet:</div>
-        {state.selectedDiet}
+        {state.selectedDiet && state.selectedDiet}
         <br />
         <div>Choose your intolerances</div>
         <div className="diet-dropdown">
@@ -132,9 +131,7 @@ function Diet() {
         </div>
         <div>My Intolerancies:</div>
         {state.selectedIntolerances
-        && state.selectedIntolerances.intolerances
-          // eslint-disable-next-line react/no-array-index-key
-          .map((option, index) => <p key={index}>{option.value}</p>)}
+        && state.selectedIntolerances.join()}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ function IngredientsList(props) {
       <div>
         <div className="ingredients-wrapper">
           <h4>My Ingredients</h4>
-          {ingredients.map((ingredient, index) => (
+          {ingredients[0].map((ingredient, index) => (
             <SmallIngredientCard
               ingredient={ingredient}
               key={index} />
