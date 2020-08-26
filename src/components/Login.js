@@ -77,6 +77,7 @@ function Login() {
 
   return (
     <div className="entry-wrapper">
+      <h1>foondo</h1>
       <form onSubmit={handleSubmit} className="login-form">
         <div className="login-title">welcome back!</div>
         <input

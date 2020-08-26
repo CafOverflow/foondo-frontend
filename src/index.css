@@ -60,6 +60,14 @@ button {
   background-size: 435px;
 }
 
+.entry-wrapper h1{
+  font-family: sheenline;
+  font-size: 100px;
+  margin:0;
+  color: #525252;
+  padding-bottom: 10px;
+}
+
 .entry-button {
   background-color: white;
   color: #af4733;
@@ -85,6 +93,7 @@ button {
   color: white;
   border: 1px solid #af4733;
 }
+
 
 /* Login */
 .login-form {
@@ -201,6 +210,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
   flex-direction: column;
 }
 
+.home_wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.home_wrapper a{
+  min-width: 100%;
+  height: 100px;
+}
+
 .header {
   display: flex;
   justify-content: center;
@@ -226,10 +245,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-size: 435px;
   width: 100%;
   margin: 30px 0;
-  min-height: 30%;
 
   /* Set a specific height */
-  height: 500px;
+  height: 190px;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
@@ -242,9 +260,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-size: 435px;
   width: 100%;
   margin: 30px 0;
-  min-height: 30%;
+  height: 190px;
   /* Set a specific height */
-  height: 500px;
+  height: 150px;
   /* Create the parallax scrolling effect */
   background-attachment: fixed;
   background-position: center;
@@ -254,6 +272,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* Layouts */
 .page-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+}
+
+.page-wrapper a{
   display: flex;
   flex-direction: column;
   align-items: center;

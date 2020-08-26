@@ -16,6 +16,7 @@ function EntryRouter() {
   return (
     <Router>
       <div className="entry-wrapper">
+        <h1>foondo</h1>
         <button type="button" onClick={changeRouteToSignUp} className="entry-button entry-button-hover">sign up</button>
         <button type="button" onClick={changeRouteToLogin} className="entry-button entry-button-hover">sign in</button>
       </div>

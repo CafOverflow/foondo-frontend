@@ -5,7 +5,7 @@ import {
 import Search from './Search';
 import IngredientsList from './IngredientsList';
 import RecipesList from './RecipesList';
-import BackButton from './BackButton';
+import Header from './Header';
 import { AppContext } from './Context';
 
 function Fridge() {
@@ -80,9 +80,9 @@ function Fridge() {
   return (
     <div className="wrapper">
       <header className="header">
-        <BackButton />
-        <h1>My Fridge</h1>
+        <Header />
       </header>
+      <h1>My Fridge</h1>
       <div className="page-wrapper">
         <div className="page-header">My Ingredients</div>
         {/* pass to the Search component a function

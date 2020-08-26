@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import BackButton from './BackButton';
+import Header from './Header';
 import { AppContext } from './Context';
 
 const diets = [
@@ -100,9 +100,9 @@ function Diet() {
   return (
     <div className="wrapper">
       <header className="header">
-        <BackButton />
-        <h1>Diet</h1>
+        <Header />
       </header>
+      <h1>Diet</h1>
       <div className="page-wrapper">
         <div>Choose your diet</div>
         <div className="diet-dropdown">
