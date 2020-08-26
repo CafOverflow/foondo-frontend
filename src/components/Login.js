@@ -65,13 +65,18 @@ function Login() {
     } else {
       handleEmailChange(emailState.value);
       await sendData();
-      changeRoute();
-      setEmail({
-        value: '',
-      });
-      setPassword({
-        password: '',
-      });
+      if (localStorage.getItem('jwt') !== 'undefined') {
+        changeRoute();
+        setEmail({
+          value: '',
+        });
+        setPassword({
+          password: '',
+        });
+      } else {
+        // eslint-disable-next-line no-alert
+        window.alert('Please enter correct information!');
+      }
     }
   };
 

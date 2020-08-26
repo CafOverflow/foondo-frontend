@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable react/no-array-index-key */
 import React, { useContext, useEffect, useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
@@ -116,7 +118,7 @@ function Diet() {
           <button type="button" className="diet-button" onClick={() => window.location.reload()}>Update</button>
         </div>
         <div>My diet:</div>
-        {state.selectedDiet && state.selectedDiet}
+        {typeof state.selectedDiet === 'string' ? state.selectedDiet : ''}
         <br />
         <div>Choose your intolerances</div>
         <div className="diet-dropdown">
@@ -130,8 +132,7 @@ function Diet() {
           <button type="button" className="diet-button" onClick={() => window.location.reload()}>Update</button>
         </div>
         <div>My Intolerancies:</div>
-        {state.selectedIntolerances
-        && state.selectedIntolerances.join()}
+        { state.selectedIntolerances === null || typeof state.selectedIntolerances == 'undefined' || typeof state.selectedIntolerances.intolerances === 'undefined' ? '' : state.selectedIntolerances.intolerances.map((option, index) => <p key={index}>{option.value}</p>)}
       </div>
     </div>
   );
