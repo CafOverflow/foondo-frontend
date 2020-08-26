@@ -10,13 +10,15 @@ function Fridge() {
     showComponent: false,
   });
   const {
-    state, showRecipes,
+    state, showRecipes, getDietFromDB, getIntoleranciesFromDB,
   } = useContext(AppContext);
 
   // make a request to backend that calls the API to load results of relevant recipes
   // result: RecipesList component to be rendered with data from the response from backend
   const jwt = localStorage.getItem('jwt');
   const fetchRecipesByIngredients = async () => {
+    getDietFromDB();
+    getIntoleranciesFromDB();
     const query = state.ingredients.join();
     await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`, {
       headers: {
