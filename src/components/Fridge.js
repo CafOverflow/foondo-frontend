@@ -1,4 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
+import {
+  Link,
+} from 'react-router-dom';
 import Search from './Search';
 import IngredientsList from './IngredientsList';
 import RecipesList from './RecipesList';
@@ -9,18 +12,26 @@ function Fridge() {
   const [localState, setState] = useState({
     showComponent: false,
   });
+  const [buttonState, setButtonState] = useState({
+    showButton: false,
+  });
+
   const {
-    state, showRecipes, getDietFromDB, getIntoleranciesFromDB,
+    state, showRecipes, getDietFromDB, getIntoleranciesFromDB, getIngredients,
   } = useContext(AppContext);
 
-  // make a request to backend that calls the API to load results of relevant recipes
-  // result: RecipesList component to be rendered with data from the response from backend
+  useEffect(() => {
+    getIngredients();
+    return () => {
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const jwt = localStorage.getItem('jwt');
   const fetchRecipesByIngredients = async () => {
-    getDietFromDB();
-    getIntoleranciesFromDB();
-    const query = state.ingredients.join();
-    await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`, {
+    const ingredients = state.ingredients.join();
+    const query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}`;
+    await fetch(query, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
@@ -33,6 +44,39 @@ function Fridge() {
       showComponent: true,
     });
   };
+
+  const fetchDiet = () => {
+    getDietFromDB();
+    getIntoleranciesFromDB();
+    setButtonState({
+      showButton: true,
+    });
+  };
+
+  const fetchRecipesByIngredientsAndDiet = async () => {
+    const ingredients = state.ingredients.join();
+    let query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}`;
+
+    if (state.selectedIntolerances) {
+      const intolerances = state.selectedIntolerances.join();
+      query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}&diet=${state.selectedDiet}&intolerances=${intolerances}`;
+    } else {
+      query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}&diet=${state.selectedDiet}`;
+    }
+    await fetch(query, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(data => data.json())
+      .then(json => {
+        showRecipes(json);
+      });
+    setState({
+      showComponent: true,
+    });
+  };
+
   return (
     <div className="wrapper">
       <header className="header">
@@ -50,17 +94,49 @@ function Fridge() {
         <IngredientsList ingredients={state.ingredients} />
         {state.ingredients.length > 0
           && (
-            <button
-              onClick={fetchRecipesByIngredients}
-              type="button"
-              className="fridge-button">
-              I want to cook!
-            </button>
+            <>
+              <button
+                onClick={fetchRecipesByIngredients}
+                type="button"
+                className="fridge-button">
+                I want to cook!
+              </button>
+              <button
+                onClick={fetchDiet}
+                type="button"
+                className="fridge-button">
+                Check my diet
+              </button>
+              {state.selectedDiet && state.selectedIntolerances
+                && (
+                <div>
+                  <div>
+                    Diet:
+                    {state.selectedDiet}
+                  </div>
+                  <div>
+                    Intolerances:
+                    {state.selectedIntolerances}
+                  </div>
+                  <Link to="/diet">Change</Link>
+                </div>
+                )}
+                {
+                  buttonState.showButton
+                    ? (
+                      <button
+                        onClick={fetchRecipesByIngredientsAndDiet}
+                        type="button"
+                        className="fridge-button">
+                        I want to cook using my diet settings!
+                      </button>
+                    ) : null
+                }
+            </>
           )}
         {localState.showComponent
-          ? <RecipesList />
+          ? <RecipesList recipes={state.recipes} />
           : null}
-        <RecipesList recipes={state.recipes} />
       </div>
     </div>
   );
