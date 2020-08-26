@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: sheenline;
-  src: url('../src/style/sheenline.ttf');
+  src: url("../src/style/sheenline.ttf");
   font-weight: lighter;
 }
 
@@ -11,7 +11,7 @@ body {
   font-family: "Montserrat", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url('./img/bg_drawings_gray.png') repeat-y;
+  background: url("./img/bg_drawings_gray.png") repeat-y;
   background-size: 100%;
 }
 
@@ -29,7 +29,7 @@ button {
   font-family: "Montserrat", sans-serif;
 }
 
-.fa-icon{
+.fa-icon {
   color: #525252;
 }
 
@@ -56,14 +56,14 @@ button {
   flex-direction: column;
   align-items: center;
   height: 550px;
-  background: url('./img/foondo_home_bg_mobile.jpg') no-repeat;
+  background: url("./img/foondo_home_bg_mobile.jpg") no-repeat;
   background-size: 435px;
 }
 
-.entry-wrapper h1{
+.entry-wrapper h1 {
   font-family: sheenline;
   font-size: 100px;
-  margin:0;
+  margin: 0;
   color: #525252;
   padding-bottom: 10px;
 }
@@ -93,7 +93,6 @@ button {
   color: white;
   border: 1px solid #af4733;
 }
-
 
 /* Login */
 .login-form {
@@ -210,14 +209,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
   flex-direction: column;
 }
 
-.home_wrapper{
+.home_wrapper {
   display: flex;
   flex-direction: column;
   min-height: 90%;
   justify-content: space-between;
 }
 
-.home_wrapper a{
+.home_wrapper a {
   min-width: 100%;
   height: 100px;
 }
@@ -230,20 +229,20 @@ Note: Beware of modifying this element as it can break the animations - you shou
   height: 80px;
 }
 
-.header h1{
+.header h1 {
   color: #525252;
   font-size: 60px;
-  font-family: sheenline; 
+  font-family: sheenline;
   margin: 20px 0px;
 }
 
 .link a {
- text-decoration: none;
- color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .link-ingredients {
-  background: url('./img/ingredients.jpg') no-repeat;
+  background: url("./img/ingredients.jpg") no-repeat;
   background-size: 435px;
   width: 100%;
   margin: 30px 0;
@@ -258,7 +257,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .link-cookbook {
-  background: url('./img/cookbook_bg.jpg') no-repeat;
+  background: url("./img/cookbook_bg.jpg") no-repeat;
   background-size: 435px;
   width: 100%;
   margin: 30px 0;
@@ -270,17 +269,16 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-
 }
 
-.link-ingredients p{
-  color:white;
+.link-ingredients p {
+  color: white;
   font-size: 30px;
   padding-top: 50px;
 }
 
-.link-cookbook p{
-  color:white;
+.link-cookbook p {
+  color: white;
   font-size: 30px;
   padding-top: 50px;
 }
@@ -293,7 +291,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   height: 500px;
 }
 
-.page-wrapper a{
+.page-wrapper a {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -311,7 +309,25 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 /* Diet */
+.diet-select {
+  background-color: white;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 23px;
+  min-width: 250px;
+  margin: 5px;
+}
+
+.diet-header {
+  font-size: 20px;
+}
+
 .diet-button {
+  margin: 10px;
+}
+
+.diet-dropdown {
   margin: 10px;
 }
 
@@ -377,7 +393,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin: 20px;
   word-wrap: break-word;
   border-radius: 10px;
-  background-color:#fff;
+  background-color: #fff;
   -webkit-box-shadow: 0px 10px 13px 1px #999;
   -moz-box-shadow: 0px 10px 13px 1px #999;
   box-shadow: 0px 10px 13px 1px #999;
@@ -403,17 +419,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
   border-top-right-radius: 10px;
 }
 
-.recipe-title{
+.recipe-title {
   margin: 10px 10px 0 10px;
   font-weight: bold;
-  font-size: 13px
+  font-size: 13px;
 }
 
 .recipe-info {
   margin: 5px 10px 15px 10px;
 }
 
-#icon-heart{
+#icon-heart {
   margin-left: 10px;
 }
 
@@ -432,13 +448,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
   color: #ba762e;
 }
 
-#icon-clock{
+#icon-clock {
   padding: 0 1.5px 0 10px;
 }
 
-.fa-heart{
+.fa-heart {
   color: #e85677;
-  font-size: 16px
+  font-size: 16px;
 }
 
 /* Recipe Card */
@@ -494,11 +510,6 @@ span:hover {
 .ingredients-wrapper {
   display: flex;
   flex-direction: column;
-}
-
-/* Diet  */
-.diet-dropdown {
-  margin: 10px;
 }
 
 /* Footer */

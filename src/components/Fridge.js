@@ -62,7 +62,8 @@ function Fridge() {
       const intolerances = state.selectedIntolerances.join();
       query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}&diet=${state.selectedDiet}&intolerances=${intolerances}`;
     } else {
-      query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}&diet=${state.selectedDiet}`;
+      query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}&diet=${state.selectedDiet.replace(/ /g, '')}`;
+      console.log(query);
     }
     await fetch(query, {
       headers: {
@@ -116,8 +117,17 @@ function Fridge() {
                     {state.selectedDiet}
                   </div>
                   <div>
-                    Intolerances:
-                    {state.selectedIntolerances}
+                    {state.selectedIntolerances.length > 0 ? (
+                      <div>
+                        Intolerances:
+                        {state.selectedIntolerances.map(i => <span>{i.value}</span>)}
+                      </div>
+                    ) : (
+                      <div>
+                        Intolerances:
+                        None
+                      </div>
+                    )}
                   </div>
                   <Link to="/diet">Change</Link>
                 </div>

@@ -10,10 +10,6 @@ function Home() {
     showComponent: false,
   });
 
-  const logOut = () => {
-    localStorage.clear();
-  };
-
   const jwt = localStorage.getItem('jwt');
   const fetchRecipes = async query => {
     await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`, {
@@ -30,22 +26,20 @@ function Home() {
       });
   };
 
-  const homeContent = () => {
-    return (
-      <div>
-        <Link to="/fridge">
-          <div className="link link-ingredients">
-            <p>INGREDIENTS</p>
-          </div>
-        </Link>
-        <Link to="/cookbook">
-          <div className="link link-cookbook">
-            <p>COOKBOOK</p>
-          </div>
-        </Link>
-      </div>
-    );
-  };
+  const homeContent = () => (
+    <div>
+      <Link to="/fridge">
+        <div className="link link-ingredients">
+          <p>INGREDIENTS</p>
+        </div>
+      </Link>
+      <Link to="/recipes">
+        <div className="link link-cookbook">
+          <p>COOKBOOK</p>
+        </div>
+      </Link>
+    </div>
+  );
 
   return (
     <div className="wrapper">
@@ -53,9 +47,6 @@ function Home() {
         <Header />
       </header>
       <div className="home_wrapper">
-        <Link exact="true" to="/">
-          <button type="button" onClick={logOut}>Log Out</button>
-        </Link>
         <Search placeholder="a recipe" fetchRecipes={fetchRecipes} />
         {localState.showComponent
           ? <RecipesList recipes={localState.recipes} />
