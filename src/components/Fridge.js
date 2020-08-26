@@ -43,7 +43,7 @@ function Fridge() {
         as a prop that will handle the request to backend (+request to API)
          to load the list of the relevant ingredients
          + create button that will add an ingredient to the DB */}
-        <Search placeholder="an ingredient" />
+        <Search placeholder="an ingredient" fetchRecipes={fetchRecipesByIngredients} />
         {/* ingredients list component should be rendered with data from DB */}
         <IngredientsList ingredients={state.ingredients} />
         {state.ingredients.length > 0
