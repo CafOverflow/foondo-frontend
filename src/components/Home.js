@@ -1,21 +1,14 @@
-import React, { useContext, useState } from 'react';
-import {
-  Link,
-} from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Search from './Search';
-import BackButton from './BackButton';
-import { AppContext } from './Context';
 import RecipesList from './RecipesList';
+import Header from './Header';
 
 function Home() {
   const [localState, setState] = useState({
     recipes: [],
     showComponent: false,
   });
-
-  const {
-    state,
-  } = useContext(AppContext);
 
   const logOut = () => {
     localStorage.clear();
@@ -37,34 +30,36 @@ function Home() {
       });
   };
 
+  const homeContent = () => {
+    return (
+      <div>
+        <Link to="/fridge">
+          <div className="link link-ingredients">
+            INGREDIENTS
+          </div>
+        </Link>
+        <Link to="/cookbook">
+          <div className="link link-cookbook">
+            COOKBOOK
+          </div>
+        </Link>
+      </div>
+    );
+  };
+
   return (
     <div className="wrapper">
       <header className="header">
-        <BackButton />
-        <h1>Foondo</h1>
+        <Header />
       </header>
-      <div className="page-wrapper">
-        {localStorage.userName
-          && (
-          <div>
-            Hello,
-            {state.userName}
-            !
-          </div>
-          )}
+      <div className="home_wrapper">
         <Link exact="true" to="/">
           <button type="button" onClick={logOut}>Log Out</button>
         </Link>
         <Search placeholder="a recipe" fetchRecipes={fetchRecipes} />
         {localState.showComponent
           ? <RecipesList recipes={localState.recipes} />
-          : null}
-        <div className="link link-ingredients">
-          <Link to="/fridge">INGREDIENTS</Link>
-        </div>
-        <div className="link link-cookbook">
-          <Link to="/cookbook">COOKBOOK</Link>
-        </div>
+          : homeContent()}
       </div>
     </div>
   );
