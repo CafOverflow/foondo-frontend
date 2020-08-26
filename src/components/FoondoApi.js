@@ -1,4 +1,4 @@
-const getApiUrl = () => process.env.FOONDO_BACKEND;
+const getApiUrl = () => process.env.REACT_APP_FOONDO_BACKEND;
 
 const getJWT = () => localStorage.getItem('jwt');
 

@@ -59,7 +59,7 @@ function Diet() {
   const saveDiet = selectedDiet => {
     if (selectedDiet[0]) {
       const diet = selectedDiet[0].value;
-      fetchFoondoApi('POST', apiPaths.userDiet, diet);
+      fetchFoondoApi('POST', apiPaths.userDiet, { diet });
     }
   };
 
