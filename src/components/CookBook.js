@@ -7,6 +7,7 @@ function CookBook() {
   const {
     state, getBookmarkedRecipes,
   } = useContext(AppContext);
+
   useEffect(() => {
     getBookmarkedRecipes();
     return () => {

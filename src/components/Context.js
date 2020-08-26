@@ -36,12 +36,12 @@ function AppContextProvider({ children }) {
     }));
   };
 
-  const showRecipes = recipe => {
-    setState(prevState => ({
-      ...prevState,
-      recipes: recipe,
-    }));
-  };
+  // const showRecipes = recipe => {
+  //   setState(prevState => ({
+  //     ...prevState,
+  //     recipes: recipe,
+  //   }));
+  // };
 
   const favouriteRecipe = recipe => {
     const jwt = localStorage.getItem('jwt');
@@ -110,7 +110,7 @@ function AppContextProvider({ children }) {
       .then(json => {
         setState(prevState => ({
           ...prevState,
-          selectedDiet: json.diet,
+          selectedDiet: json.diet.replace(/ /g, ''),
         }));
       });
   };
@@ -126,8 +126,56 @@ function AppContextProvider({ children }) {
       .then(json => {
         setState(prevState => ({
           ...prevState,
-          selectedIntolerances: json,
+          selectedIntolerances: json.intolerances.map(i => i.value),
         }));
+      });
+  };
+
+  const getIngredients = async () => {
+    const jwt = localStorage.getItem('jwt');
+    await fetch('http://localhost:3001/user/fridge', {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(data => data.json())
+      .then(ingredientsArray => {
+        setState(prevState => ({
+          ...prevState,
+          ingredients: [
+            ...prevState.ingredients,
+            ingredientsArray,
+          ],
+        }));
+      });
+  };
+
+  const sendSingleIngredient = ingredient => {
+    const jwt = localStorage.getItem('jwt');
+    fetch(`http://localhost:3001/food/ingredients/autocomplete/${ingredient}`, {
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then(data => data.json())
+      .then(ingredients => ingredients[0])
+      .then(ingredientObject => {
+        fetch('http://localhost:3001/user/fridge', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify({ ingredients: [ingredientObject] }),
+        }).then(() => {
+          setState(prevState => ({
+            ...prevState,
+            ingredients: [
+              ...prevState.ingredients,
+              ingredientObject,
+            ],
+          }));
+        });
       });
   };
 
@@ -136,13 +184,15 @@ function AppContextProvider({ children }) {
       state,
       handleEmailChange,
       showIngredients,
-      showRecipes,
+      // showRecipes,
       deleteIngredient,
       favouriteRecipe,
       unfavouriteRecipe,
       getBookmarkedRecipes,
       getDietFromDB,
       getIntoleranciesFromDB,
+      sendSingleIngredient,
+      getIngredients,
     }}>
       {children}
     </AppContext.Provider>

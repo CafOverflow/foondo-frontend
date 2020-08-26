@@ -13,7 +13,7 @@ function Search(props) {
   });
 
   const {
-    showIngredients,
+    sendSingleIngredient,
   } = useContext(AppContext);
 
   const handleValueChange = event => {
@@ -32,7 +32,7 @@ function Search(props) {
     if (placeholder === 'a recipe') {
       fetchRecipes(value);
     } else {
-      showIngredients(value);
+      sendSingleIngredient(value);
     }
     setState({ value: '' });
   };
