@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter,
   Switch,
@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import SmallRecipeCard from './SmallRecipeCard';
 import RecipeCard from './RecipeCard';
 import BackButton from './BackButton';
-import { AppContext } from './Context';
+// import { AppContext } from './Context';
 
 function RecipesList(mainProps) {
   const { recipes } = mainProps;
@@ -24,9 +24,9 @@ function RecipesList(mainProps) {
   //   return [localState, setLocalState];
   // }
 
-  const {
-    state,
-  } = useContext(AppContext);
+  // const {
+  //   state,
+  // } = useContext(AppContext);
 
   // usePersistedState('recipes', state.recipes);
   // const recipes = JSON.parse(localStorage.getItem('recipes'));
