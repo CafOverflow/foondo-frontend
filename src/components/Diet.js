@@ -60,6 +60,7 @@ function Diet() {
     if (selectedDiet[0]) {
       const diet = selectedDiet[0].value;
       fetchFoondoApi('POST', apiPaths.userDiet, { diet });
+      window.location.reload(false);
     }
   };
 
@@ -71,6 +72,7 @@ function Diet() {
 
   const saveIntolerances = () => {
     fetchFoondoApi('POST', apiPaths.userIntolerances, { intolerances: intolerancesState });
+    window.location.reload(false);
   };
 
   useEffect(() => {
@@ -88,33 +90,34 @@ function Diet() {
       </header>
       <h1>Diet</h1>
       <div className="page-wrapper">
-        <div>Choose your diet</div>
-        <div className="diet-dropdown">
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            onChange={handleChangeDiet}
-            options={diets} />
-          <button type="button" className="diet-button" onClick={saveDiet(dietState)}>Save</button>
-          <button type="button" className="diet-button" onClick={() => window.location.reload()}>Update</button>
+        <div className="diet-select">
+          <div className="diet-header">Choose your diet</div>
+          <div className="diet-dropdown">
+            <Select
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              isMulti
+              onChange={handleChangeDiet}
+              options={diets} />
+            <button type="button" className="diet-button" onClick={saveDiet(dietState)}>Save</button>
+          </div>
+          <div>My diet:</div>
+          {typeof state.selectedDiet === 'string' ? <p>{state.selectedDiet}</p> : ''}
         </div>
-        <div>My diet:</div>
-        {typeof state.selectedDiet === 'string' ? state.selectedDiet : ''}
-        <br />
-        <div>Choose your intolerances</div>
-        <div className="diet-dropdown">
-          <Select
-            closeMenuOnSelect={false}
-            components={animatedComponents}
-            isMulti
-            onChange={handleChangeIntolerancies}
-            options={intolerances} />
-          <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
-          <button type="button" className="diet-button" onClick={() => window.location.reload()}>Update</button>
+        <div className="diet-select">
+          <div className="diet-header">Choose your intolerances</div>
+          <div className="diet-dropdown">
+            <Select
+              closeMenuOnSelect={false}
+              components={animatedComponents}
+              isMulti
+              onChange={handleChangeIntolerancies}
+              options={intolerances} />
+            <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
+          </div>
+          <div>My Intolerancies:</div>
+          { state.selectedIntolerances.length === 0 || typeof state.selectedIntolerances == 'undefined' ? '' : state.selectedIntolerances.map((option, index) => <p key={index}>{option.value}</p>)}
         </div>
-        <div>My Intolerancies:</div>
-        { state.selectedIntolerances === null || typeof state.selectedIntolerances == 'undefined' || typeof state.selectedIntolerances.intolerances === 'undefined' ? '' : state.selectedIntolerances.intolerances.map((option, index) => <p key={index}>{option.value}</p>)}
       </div>
     </div>
   );

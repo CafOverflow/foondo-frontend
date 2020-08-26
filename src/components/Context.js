@@ -9,7 +9,7 @@ function AppContextProvider({ children }) {
     recipes: [],
     favouriteRecipes: [],
     selectedDiet: null,
-    selectedIntolerances: null,
+    selectedIntolerances: [],
     userName: null,
   });
 
@@ -87,7 +87,7 @@ function AppContextProvider({ children }) {
       .then(json => {
         setState(prevState => ({
           ...prevState,
-          selectedDiet: json.diet.replace(/ /g, ''),
+          selectedDiet: json.diet,
         }));
       });
   };
@@ -98,7 +98,8 @@ function AppContextProvider({ children }) {
       .then(json => {
         setState(prevState => ({
           ...prevState,
-          selectedIntolerances: json.intolerances.map(i => i.value),
+          // selectedIntolerances: json.intolerances.map(i => i.value),
+          selectedIntolerances: json.intolerances,
         }));
       });
   };

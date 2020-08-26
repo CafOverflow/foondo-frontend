@@ -98,7 +98,7 @@ function RecipeCard(props) {
   const recipe = getRecipeByID(recipes);
   return (
     <div className="recipe-container">
-      <BackButton />
+      <Link to="/recipes"><BackButton /></Link>
       <div className="image-container">
         <div
           className="bg-image"

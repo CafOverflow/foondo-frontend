@@ -57,7 +57,7 @@ function Fridge() {
       const intolerances = state.selectedIntolerances.join();
       query = `?query=${ingredients}&diet=${state.selectedDiet}&intolerances=${intolerances}`;
     } else {
-      query = `?query=${ingredients}&diet=${state.selectedDiet}`;
+      query = `?query=${ingredients}&diet=${state.selectedDiet.replace(/ /g, '')}`;
     }
     await fetchFoondoApi('GET', `${apiPaths.recipesComplexSearch}${query}`)
       .then(data => data.json())
@@ -107,8 +107,17 @@ function Fridge() {
                     {state.selectedDiet}
                   </div>
                   <div>
-                    Intolerances:
-                    {state.selectedIntolerances}
+                    {state.selectedIntolerances.length > 0 ? (
+                      <div>
+                        Intolerances:
+                        {state.selectedIntolerances.map(i => <span>{i.value}</span>)}
+                      </div>
+                    ) : (
+                      <div>
+                        Intolerances:
+                        None
+                      </div>
+                    )}
                   </div>
                   <Link to="/diet">Change</Link>
                 </div>

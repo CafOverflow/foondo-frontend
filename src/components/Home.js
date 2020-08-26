@@ -11,10 +11,6 @@ function Home() {
     showComponent: false,
   });
 
-  const logOut = () => {
-    localStorage.clear();
-  };
-
   const fetchRecipes = async query => {
     await fetchFoondoApi('GET', `${apiPaths.recipesComplexSearch}?query=${query}`)
       .then(data => data.json())
@@ -33,7 +29,7 @@ function Home() {
           <p>INGREDIENTS</p>
         </div>
       </Link>
-      <Link to="/cookbook">
+      <Link to="/recipes">
         <div className="link link-cookbook">
           <p>COOKBOOK</p>
         </div>
@@ -47,9 +43,6 @@ function Home() {
         <Header />
       </header>
       <div className="home_wrapper">
-        <Link exact="true" to="/">
-          <button type="button" onClick={logOut}>Log Out</button>
-        </Link>
         <Search placeholder="a recipe" fetchRecipes={fetchRecipes} />
         {localState.showComponent
           ? <RecipesList recipes={localState.recipes} />
