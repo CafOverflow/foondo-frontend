@@ -14,6 +14,7 @@ import ProtectedRoute from './ProtectedRoute';
 import EntryRouter from './EntryRouter';
 import Login from './Login';
 import SignUp from './SignUp';
+import RecipeCard from './RecipeCard';
 
 function AppMenu() {
   const [state, setState] = useState({
@@ -56,6 +57,7 @@ function AppMenu() {
         <ProtectedRoute path="/diet" Component={Diet} />
         <ProtectedRoute path="/fridge" Component={Fridge} />
         <ProtectedRoute path="/cookbook" Component={CookBook} />
+        {/* <ProtectedRoute path="/recipes" Component={RecipeCard} /> */}
       </Switch>
 
     </Router>
