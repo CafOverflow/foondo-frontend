@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-danger */
 import React, { useContext } from 'react';
 import { Link, Route } from 'react-router-dom';
@@ -15,6 +17,69 @@ const getRecipeByID = props => {
   const recipe = filterByID(recipeID, props);
   return recipe;
 };
+
+const summary = recipe => <p dangerouslySetInnerHTML={{ __html: recipe.summary }} />;
+
+const ingredientList = extendedIngredients => (
+  <div>
+    <h4>Ingredients</h4>
+    <ul className="recipe-ingredients">
+      {extendedIngredients.map(ingredient => (
+        <li key={ingredient.id}>
+          {Math.round(ingredient.measures.metric.amount)}
+          {' '}
+          {ingredient.measures.metric.unitShort}
+          {' '}
+          {ingredient.name}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const instructionsList = (instructions, sourceUrl) => (
+  <div>
+    <h4>Detailed Instructions</h4>
+    {instructions.map((instruction, index) => (
+      <div key={index}>
+        <div className="instruction-name">{instruction.name}</div>
+        {instruction.steps.map(step => (
+          <div key={step.number}>
+            <br />
+            <div>
+              <b>
+                <span>Step number </span>
+                <span>
+                  {step.number}
+                  .
+                </span>
+              </b>
+            </div>
+            {step.step}
+            <br />
+            <br />
+            {step.ingredients.length > 0
+              && <span><i>Ingredients for this step: </i></span>}
+            {step.ingredients.map(ingredient => (
+              <span key={ingredient.id}>
+                {ingredient.name}
+                {', '}
+              </span>
+            ))}
+            <br />
+          </div>
+        ))}
+      </div>
+    ))}
+    <span>Read the detailed instructions</span>
+    <a href={sourceUrl}>
+      <FontAwesomeIcon
+        icon={faExternalLinkAlt}
+        id="icon-external-link"
+        className="icon-external-link" />
+    </a>
+  </div>
+);
 
 function RecipeCard(props) {
   const {
@@ -43,63 +108,10 @@ function RecipeCard(props) {
             {recipe.servings}
           </small>
         </div>
-        {recipe.summary
-          && <p dangerouslySetInnerHTML={{ __html: recipe.summary }} />}
-        {recipe.extendedIngredients
-          && <h4>Ingredients</h4>}
-        <ul className="recipe-ingredients">
-          {recipe.extendedIngredients && recipe.extendedIngredients.map(ingredient => (
-            <li>
-              {Math.round(ingredient.measures.metric.amount)}
-              {' '}
-              {ingredient.measures.metric.unitShort}
-              {' '}
-              {ingredient.name}
-            </li>
-          ))}
-        </ul>
-        <div>
-          {recipe.analyzedInstructions.length > 0
-          && <h4>Detailed Instructions</h4>}
-          {recipe.analyzedInstructions && recipe.analyzedInstructions.map(instruction => (
-            <div>
-              <div className="instruction-name">{instruction.name}</div>
-              {instruction.steps.map(step => (
-                <div>
-                  <br />
-                  <div>
-                    <b>
-                      <span>Step number </span>
-                      <span>
-                        {step.number}
-                        .
-                      </span>
-                    </b>
-                  </div>
-                  {step.step}
-                  <br />
-                  <br />
-                  {step.ingredients.length > 0
-          && <span><i>Ingredients for this step: </i></span>}
-                  {step.ingredients.map(ingredient => (
-                    <span>
-                      {ingredient.name}
-                      {', '}
-                    </span>
-                  ))}
-                  <br />
-                </div>
-              ))}
-            </div>
-          ))}
-          <span>Read the detailed instructions</span>
-          <a href={recipe.sourceUrl}>
-            <FontAwesomeIcon
-              icon={faExternalLinkAlt}
-              id="icon-external-link"
-              className="icon-external-link" />
-          </a>
-        </div>
+        {recipe.summary && summary(recipe)}
+        {recipe.extendedIngredients && ingredientList(recipe.extendedIngredients)}
+        {recipe.analyzedInstructions && instructionsList(recipe.analyzedInstructions, recipe.sourceUrl)}
+
         <div className="tags-container">
           {recipe.dishTypes && recipe.dishTypes.map(type => (
             <span key={type}>{type}</span>

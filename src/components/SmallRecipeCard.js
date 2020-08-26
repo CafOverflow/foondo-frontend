@@ -45,7 +45,7 @@ SmallRecipeCard.propTypes = {
     author: PropTypes.string,
     readyInMinutes: PropTypes.number,
     servings: PropTypes.number,
-    id: PropTypes.number,
+    id: PropTypes.string,
   }),
 };
 

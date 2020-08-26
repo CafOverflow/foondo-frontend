@@ -12,7 +12,7 @@ import BackButton from './BackButton';
 
 function RecipesList(mainProps) {
   const { recipes } = mainProps;
-  if (recipes) {
+  if (recipes && recipes.length > 0) {
     return (
       <BrowserRouter>
         <div className="recipes-wrapper">
