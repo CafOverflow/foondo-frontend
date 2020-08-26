@@ -9,7 +9,8 @@ function SmallIngredientCard(props) {
   } = useContext(AppContext);
   return (
     <div className="ingredients-list">
-      {ingredient}
+      {ingredient.name}
+      <img src={ingredient.image} alt={ingredient} />
       <button type="button" onClick={() => deleteIngredient(ingredient)}>x</button>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   Link,
 } from 'react-router-dom';
@@ -17,8 +17,15 @@ function Fridge() {
   });
 
   const {
-    state, showRecipes, getDietFromDB, getIntoleranciesFromDB,
+    state, showRecipes, getDietFromDB, getIntoleranciesFromDB, getIngredients,
   } = useContext(AppContext);
+
+  useEffect(() => {
+    getIngredients();
+    return () => {
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const jwt = localStorage.getItem('jwt');
   const fetchRecipesByIngredients = async () => {
