@@ -35,12 +35,12 @@ function Home() {
       <div>
         <Link to="/fridge">
           <div className="link link-ingredients">
-            INGREDIENTS
+            <p>INGREDIENTS</p>
           </div>
         </Link>
         <Link to="/cookbook">
           <div className="link link-cookbook">
-            COOKBOOK
+            <p>COOKBOOK</p>
           </div>
         </Link>
       </div>
