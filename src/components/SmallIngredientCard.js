@@ -5,19 +5,27 @@ import { AppContext } from './Context';
 function SmallIngredientCard(props) {
   const { ingredient } = props;
   const {
-    deleteIngredient,
+    deleteSingleIngredient,
   } = useContext(AppContext);
   return (
     <div className="ingredients-list">
       {ingredient.name}
       <img src={ingredient.image} alt={ingredient} />
-      <button type="button" onClick={() => deleteIngredient(ingredient)}>x</button>
+      <button type="button" onClick={() => deleteSingleIngredient(ingredient.id)}>x</button>
     </div>
   );
 }
 
 SmallIngredientCard.propTypes = {
-  ingredient: PropTypes.string.isRequired,
+  ingredient: PropTypes.shape({
+    name: PropTypes.string,
+    image: PropTypes.string,
+    id: PropTypes.string,
+  }),
+};
+
+SmallIngredientCard.defaultProps = {
+  ingredient: {},
 };
 
 export default SmallIngredientCard;
