@@ -29,19 +29,19 @@ function AppContextProvider({ children }) {
     }));
   };
 
-  const deleteIngredient = ingredient => {
-    setState(prevState => ({
-      ...prevState,
-      ingredients: prevState.ingredients.filter(i => i !== ingredient),
-    }));
-  };
-
-  // const showRecipes = recipe => {
+  // const deleteIngredient = ingredient => {
   //   setState(prevState => ({
   //     ...prevState,
-  //     recipes: recipe,
+  //     ingredients: prevState.ingredients.filter(i => i !== ingredient),
   //   }));
   // };
+
+  const showRecipes = recipe => {
+    setState(prevState => ({
+      ...prevState,
+      recipes: recipe,
+    }));
+  };
 
   const favouriteRecipe = recipe => {
     const jwt = localStorage.getItem('jwt');
@@ -142,10 +142,7 @@ function AppContextProvider({ children }) {
       .then(ingredientsArray => {
         setState(prevState => ({
           ...prevState,
-          ingredients: [
-            ...prevState.ingredients,
-            ingredientsArray,
-          ],
+          ingredients: ingredientsArray,
         }));
       });
   };
@@ -179,13 +176,31 @@ function AppContextProvider({ children }) {
       });
   };
 
+  const deleteSingleIngredient = ingredientId => {
+    const jwt = localStorage.getItem('jwt');
+    fetch('http://localhost:3001/user/fridge', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwt}`,
+      },
+      body: JSON.stringify({ ingredientIds: [ingredientId] }),
+    })
+      .then(() => {
+        setState(prevState => ({
+          ...prevState,
+          ingredients: state.ingredients.filter(i => i.id !== ingredientId),
+        }));
+      });
+  };
+
   return (
     <AppContext.Provider value={{
       state,
       handleEmailChange,
       showIngredients,
-      // showRecipes,
-      deleteIngredient,
+      showRecipes,
+      // deleteIngredient,
       favouriteRecipe,
       unfavouriteRecipe,
       getBookmarkedRecipes,
@@ -193,6 +208,7 @@ function AppContextProvider({ children }) {
       getIntoleranciesFromDB,
       sendSingleIngredient,
       getIngredients,
+      deleteSingleIngredient,
     }}>
       {children}
     </AppContext.Provider>
