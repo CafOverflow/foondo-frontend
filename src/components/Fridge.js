@@ -28,10 +28,11 @@ function Fridge() {
   }, []);
 
   const jwt = localStorage.getItem('jwt');
-  const fetchRecipesByIngredients = async () => {
-    const ingredients = state.ingredients.join();
+  const fetchRecipesByIngredients = () => {
+    const ingredients = state.ingredients.map(i => i.name).join();
+
     const query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}`;
-    await fetch(query, {
+    fetch(query, {
       headers: {
         Authorization: `Bearer ${jwt}`,
       },
@@ -54,7 +55,7 @@ function Fridge() {
   };
 
   const fetchRecipesByIngredientsAndDiet = async () => {
-    const ingredients = state.ingredients.join();
+    const ingredients = state.ingredients.map(i => i.name).join();
     let query = `http://localhost:3001/recipes/complexSearch?query=${ingredients}`;
 
     if (state.selectedIntolerances) {

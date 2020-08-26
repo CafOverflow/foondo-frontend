@@ -82,21 +82,20 @@ const instructionsList = (instructions, sourceUrl) => (
   </div>
 );
 
-console.log('not entered the function');
+// console.log('not entered the function');
 
 function RecipeCard(props) {
-  console.log('entered function');
+  const { recipes } = props;
+  // console.log('entered function');
 
   useEffect(() => {
-    console.log('effect');
+    // console.log('effect');
   });
 
-  const {
-    state, favouriteRecipe, unfavouriteRecipe,
-  } = useContext(AppContext);
-  console.log('context', state.recipes);
+  const { favouriteRecipe, unfavouriteRecipe } = useContext(AppContext);
+  // console.log('context', state.recipes);
   // const recipe = getRecipeByID(state.recipes);
-  const recipe = getRecipeByID(props.recipes);
+  const recipe = getRecipeByID(recipes);
   return (
     <div className="recipe-container">
       <BackButton />
@@ -142,6 +141,8 @@ function RecipeCard(props) {
   );
 }
 RecipeCard.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  recipes: PropTypes.array,
   recipe: PropTypes.shape({
     sourceUrl: PropTypes.string,
     image: PropTypes.string,
@@ -159,6 +160,7 @@ RecipeCard.propTypes = {
 
 RecipeCard.defaultProps = {
   recipe: {},
+  recipes: [],
 };
 
 export default RecipeCard;
