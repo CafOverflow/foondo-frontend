@@ -5,6 +5,7 @@ import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import Header from './Header';
 import { AppContext } from './Context';
+import { fetchFoondoApi, apiPaths } from './FoondoApi';
 
 const diets = [
   { value: 'None', label: 'None' },
@@ -58,17 +59,7 @@ function Diet() {
   const saveDiet = selectedDiet => {
     if (selectedDiet[0]) {
       const diet = selectedDiet[0].value;
-      const jwt = localStorage.getItem('jwt');
-      fetch('http://localhost:3001/user/diet', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${jwt}`,
-        },
-        body: JSON.stringify({
-          diet,
-        }),
-      });
+      fetchFoondoApi('POST', apiPaths.userDiet, { diet });
       window.location.reload(false);
     }
   };
@@ -80,17 +71,7 @@ function Diet() {
   };
 
   const saveIntolerances = () => {
-    const jwt = localStorage.getItem('jwt');
-    fetch('http://localhost:3001/user/intolerances', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify({
-        intolerances: intolerancesState,
-      }),
-    });
+    fetchFoondoApi('POST', apiPaths.userIntolerances, { intolerances: intolerancesState });
     window.location.reload(false);
   };
 

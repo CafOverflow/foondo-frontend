@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Search from './Search';
 import RecipesList from './RecipesList';
 import Header from './Header';
+import { fetchFoondoApi, apiPaths } from './FoondoApi';
 
 function Home() {
   const [localState, setState] = useState({
@@ -10,13 +11,8 @@ function Home() {
     showComponent: false,
   });
 
-  const jwt = localStorage.getItem('jwt');
   const fetchRecipes = async query => {
-    await fetch(`http://localhost:3001/recipes/complexSearch?query=${query}`, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    await fetchFoondoApi('GET', `${apiPaths.recipesComplexSearch}?query=${query}`)
       .then(data => data.json())
       .then(json => {
         setState({

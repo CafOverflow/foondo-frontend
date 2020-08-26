@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { fetchFoondoApi, apiPaths } from './FoondoApi';
 
 const AppContext = createContext();
 function AppContextProvider({ children }) {
@@ -44,18 +45,10 @@ function AppContextProvider({ children }) {
   };
 
   const favouriteRecipe = recipe => {
-    const jwt = localStorage.getItem('jwt');
     const recipeForFetch = {
       recipe,
     };
-    fetch('http://localhost:3001/recipes/bookmarks/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify(recipeForFetch),
-    })
+    fetchFoondoApi('POST', apiPaths.recipeBookmarks, recipeForFetch)
       .then(() => {
         setState(prevState => ({
           ...prevState,
@@ -68,13 +61,7 @@ function AppContextProvider({ children }) {
   };
 
   const unfavouriteRecipe = recipeId => {
-    const jwt = localStorage.getItem('jwt');
-    fetch(`http://localhost:3001/recipes/bookmarks/${recipeId}`, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    fetchFoondoApi('DELETE', `${apiPaths.recipeBookmarks}${recipeId}`)
       .then(() => {
         setState(prevState => ({
           ...prevState,
@@ -84,12 +71,7 @@ function AppContextProvider({ children }) {
   };
 
   const getBookmarkedRecipes = () => {
-    const jwt = localStorage.getItem('jwt');
-    fetch('http://localhost:3001/recipes/bookmarks/', {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    fetchFoondoApi('GET', apiPaths.recipeBookmarks)
       .then(data => data.json())
       .then(json => {
         setState(prevState => ({
@@ -100,12 +82,7 @@ function AppContextProvider({ children }) {
   };
 
   const getDietFromDB = async () => {
-    const jwt = localStorage.getItem('jwt');
-    await fetch('http://localhost:3001/user/diet', {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    fetchFoondoApi('GET', apiPaths.userDiet)
       .then(data => data.json())
       .then(json => {
         setState(prevState => ({
@@ -116,12 +93,7 @@ function AppContextProvider({ children }) {
   };
 
   const getIntoleranciesFromDB = () => {
-    const jwt = localStorage.getItem('jwt');
-    fetch('http://localhost:3001/user/intolerances', {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    fetchFoondoApi('GET', apiPaths.userIntolerances)
       .then(data => data.json())
       .then(json => {
         setState(prevState => ({
@@ -133,12 +105,7 @@ function AppContextProvider({ children }) {
   };
 
   const getIngredients = async () => {
-    const jwt = localStorage.getItem('jwt');
-    await fetch('http://localhost:3001/user/fridge', {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    fetchFoondoApi('GET', apiPaths.userFridge)
       .then(data => data.json())
       .then(ingredientsArray => {
         setState(prevState => ({
@@ -149,44 +116,25 @@ function AppContextProvider({ children }) {
   };
 
   const sendSingleIngredient = ingredient => {
-    const jwt = localStorage.getItem('jwt');
-    fetch(`http://localhost:3001/food/ingredients/autocomplete/${ingredient}`, {
-      headers: {
-        Authorization: `Bearer ${jwt}`,
-      },
-    })
+    fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
       .then(data => data.json())
       .then(ingredients => ingredients[0])
       .then(ingredientObject => {
-        fetch('http://localhost:3001/user/fridge', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
-          },
-          body: JSON.stringify({ ingredients: [ingredientObject] }),
-        }).then(() => {
-          setState(prevState => ({
-            ...prevState,
-            ingredients: [
-              ...prevState.ingredients,
-              ingredientObject,
-            ],
-          }));
-        });
+        fetchFoondoApi('POST', apiPaths.userFridge, { ingredients: [ingredientObject] })
+          .then(() => {
+            setState(prevState => ({
+              ...prevState,
+              ingredients: [
+                ...prevState.ingredients,
+                ingredientObject,
+              ],
+            }));
+          });
       });
   };
 
   const deleteSingleIngredient = ingredientId => {
-    const jwt = localStorage.getItem('jwt');
-    fetch('http://localhost:3001/user/fridge', {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify({ ingredientIds: [ingredientId] }),
-    })
+    fetchFoondoApi('DELETE', apiPaths.userFridge, { ingredientIds: [ingredientId] })
       .then(() => {
         setState(prevState => ({
           ...prevState,
