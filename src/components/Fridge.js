@@ -74,8 +74,7 @@ function Fridge() {
       <header className="header">
         <Header />
       </header>
-      <h1>My Fridge</h1>
-      <div className="page-wrapper">
+      <div className="page-wrapper-search">
         <div className="page-header">My Ingredients</div>
         {/* pass to the Search component a function
         as a prop that will handle the request to backend (+request to API)
@@ -90,13 +89,13 @@ function Fridge() {
               <button
                 onClick={fetchRecipesByIngredients}
                 type="button"
-                className="fridge-button">
+                className="default-button">
                 I want to cook!
               </button>
               <button
                 onClick={fetchDiet}
                 type="button"
-                className="fridge-button">
+                className="default-button">
                 Check my diet
               </button>
               {state.selectedDiet && state.selectedIntolerances

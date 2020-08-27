@@ -20,7 +20,7 @@ function CookBook() {
         <Header />
       </header>
       <h1>My Cook Book</h1>
-      <div className="page-wrapper">
+      <div className="">
         <div className="page-header">My Cookbook</div>
         <RecipesList recipes={state.favouriteRecipes} />
       </div>

@@ -38,7 +38,7 @@ button {
   width: 36px;
   height: 30px;
   left: 36px;
-  top: 26px;
+  top: 16px;
   background: none;
   color: inherit;
   border: none;
@@ -66,6 +66,34 @@ button {
   margin: 0;
   color: #525252;
   padding-bottom: 10px;
+}
+
+
+.default-button {
+  background-color:  #af4733;
+  color: #fff;
+  text-decoration: none;
+  margin: 5px auto;
+  padding: 5px 0;
+  min-width: 200px;
+  border: 1px solid white;
+  border-radius: 15px;
+  font-size: 16px;
+}
+
+.default-button:hover {
+  cursor: pointer;
+  background-color: #5f2013 ;
+}
+
+.default-button-hover {
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+}
+
+.default-button-hover:hover {
+  background-color: #af4733;
+  color: white;
+  border: 1px solid #af4733;
 }
 
 .entry-button {
@@ -142,7 +170,7 @@ button {
   height: 20px;
   /* left: 300px; */
   right: 40px;
-  top: 34px;
+  top: 20px;
 }
 
 /* Color/shape of burger icon bars */
@@ -214,6 +242,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   flex-direction: column;
   min-height: 90%;
   justify-content: space-between;
+  margin-top: 80px;
 }
 
 .home_wrapper a {
@@ -224,16 +253,20 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .header {
   display: flex;
   justify-content: center;
+  text-align: center;
   box-shadow: 0 5px 11px -7px lightgrey;
   background-color: #fff;
-  height: 80px;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
 }
 
 .header h1 {
   color: #525252;
-  font-size: 60px;
+  font-size: 50px;
   font-family: sheenline;
-  margin: 20px 0px;
+  margin: 10px 0px;
 }
 
 .link a {
@@ -291,6 +324,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
   height: 500px;
 }
 
+.page-wrapper-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 500px;
+  margin-top:80px;
+}
+
 .page-wrapper a {
   display: flex;
   flex-direction: column;
@@ -308,6 +349,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin: 10px auto;
 }
 
+.ingredients-list{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ingredients-list img{
+  height: 25px;
+}
+
+
 /* Diet */
 .diet-select {
   background-color: white;
@@ -317,6 +369,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   border-radius: 23px;
   min-width: 250px;
   margin: 5px;
+  display: block;
 }
 
 .diet-header {
@@ -476,9 +529,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .image-container {
-  max-height: 10px;
+  /* max-height: 200px; */
   flex: 1;
-  height: 400px;
+  height: 300px;
 }
 
 .bg-image {
@@ -520,7 +573,7 @@ span:hover {
   display: flex;
   justify-content: space-around;
   padding: 15px 0 0 0;
-  border-top: 0.7px solid #eee;
+  border-top: 0.7px solid #aaa;
   /* margin-top: 30px; */
   font-size: 14px;
 }
