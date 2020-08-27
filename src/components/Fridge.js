@@ -25,7 +25,7 @@ function Fridge() {
     getIngredients();
     return () => {
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchRecipesByIngredients = async () => {
@@ -100,38 +100,50 @@ function Fridge() {
               </button>
               {state.selectedDiet && state.selectedIntolerances
                 && (
-                <div>
-                  <div>
-                    Diet:
-                    {state.selectedDiet}
+                  <div className="diet-intolerance-wrapper">
+                    <div>
+
+                      Diet:
+                      &nbsp;
+                      {state.selectedDiet}
+                    </div>
+                    <div>
+                      {state.selectedIntolerances.length > 0 ? (
+                        <div>
+                          <br />
+                          Intolerances:
+                        &nbsp;
+                          {state.selectedIntolerances.map(i => (
+                            <div>
+                              <span className="ingredient-intolerances" key={i.value}>{i.value}</span>
+                              <br />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div>
+                          Intolerances:
+                          None
+                        </div>
+                      )}
+                    </div>
+                    <br />
+                    <Link className="diet-change" to="/diet">Change</Link>
                   </div>
-                  <div>
-                    {state.selectedIntolerances.length > 0 ? (
-                      <div>
-                        Intolerances:
-                        {state.selectedIntolerances.map(i => <span key={i.value}>{i.value}</span>)}
-                      </div>
-                    ) : (
-                      <div>
-                        Intolerances:
-                        None
-                      </div>
-                    )}
-                  </div>
-                  <Link to="/diet">Change</Link>
-                </div>
                 )}
-                {
-                  buttonState.showButton
-                    ? (
-                      <button
-                        onClick={fetchRecipesByIngredientsAndDiet}
-                        type="button"
-                        className="fridge-button">
-                        I want to cook using my diet settings!
-                      </button>
-                    ) : null
-                }
+              {
+                buttonState.showButton
+                  ? (
+                    <button
+                      onClick={fetchRecipesByIngredientsAndDiet}
+                      type="button"
+                      className="default-button">
+                      I want to cook using
+                      <br />
+                      my diet settings!
+                    </button>
+                  ) : null
+              }
             </>
           )}
         {localState.showComponent

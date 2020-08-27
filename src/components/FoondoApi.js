@@ -16,7 +16,6 @@ const login = credentials => {
     body: JSON.stringify(credentials),
   };
   const uri = `${getApiUrl()}login`;
-  console.log(getApiUrl());
   return fetch(uri, request);
 };
 

@@ -8,7 +8,6 @@ function IngredientsList(props) {
     return (
       <div>
         <div className="ingredients-wrapper">
-          <h4>My Ingredients</h4>
           {ingredients.map(ingredient => (
             <SmallIngredientCard
               ingredient={ingredient}
@@ -19,7 +18,7 @@ function IngredientsList(props) {
     );
   }
   return (
-    <div className="recipes-wrapper">
+    <div className="ingredients-wrapper">
       <div>No ingredients yet</div>
     </div>
   );
