@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchFoondoApi, apiPaths } from './FoondoApi';
+import Loading from './Loading';
 
 const AppContext = createContext();
 function AppContextProvider({ children }) {
