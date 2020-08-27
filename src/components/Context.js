@@ -133,6 +133,7 @@ function AppContextProvider({ children }) {
               ingredientObject,
             ],
           }));
+          return true;
         });
     });
 

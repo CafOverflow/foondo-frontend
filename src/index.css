@@ -229,6 +229,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Styling of overlay */
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
+  visibility: hidden;
 }
 
 /* Home */
@@ -252,6 +253,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .header {
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   text-align: center;

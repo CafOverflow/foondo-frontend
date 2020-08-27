@@ -13,9 +13,11 @@ function App() {
     <div className="App">
       <AppContextProvider>
         <Router>
-          <Switch>
-            <AppRouter />
-          </Switch>
+          <div className="App2">
+            <Switch>
+              <AppRouter />
+            </Switch>
+          </div>
           <Footer />
         </Router>
       </AppContextProvider>
