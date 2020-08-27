@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
-import { Link, Route } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import BackButton from './BackButton';
+import { faExternalLinkAlt, faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { AppContext } from './Context';
 
 const filterByID = (id, props) => props.recipes.find(recipe => recipe.id === id);
@@ -76,16 +75,55 @@ const instructionsList = (instructions, sourceUrl) => (
 
 function RecipeCard(props) {
   const { favouriteRecipe, unfavouriteRecipe } = useContext(AppContext);
+
+  const [state, setState] = useState({
+    messge: '',
+  });
+
+  const makeRecipeUnfavourite = id => {
+    unfavouriteRecipe(id);
+    window.location.href = '/cookbook';
+  };
+
+  const makeRecipeFavourite = id => {
+    favouriteRecipe(id);
+    setState({
+      message: 'Added to your favourite!',
+    });
+  };
+
   const recipe = getRecipeID(props);
+
+  window.scrollTo(0, 0);
+
   return (
     <div className="recipe-container">
-      <Link to="/recipes"><BackButton /></Link>
       <div className="image-container">
         <div
           className="bg-image"
           style={{ backgroundImage: `url(${recipe.image})` }} />
       </div>
       <div className="recipe-info">
+
+        <button title="Make me favourite" className="fav-button" type="button" onClick={() => makeRecipeFavourite(recipe)}>
+          <span className="fav">Make me favourite</span>
+          <FontAwesomeIcon
+            icon={faSolidHeart}
+            id="icon-external-link"
+            className="icon-external-link" />
+        </button>
+        <button title="Make me unfavourite" className="fav-button" type="button" onClick={() => makeRecipeUnfavourite(recipe.id)}>
+          <FontAwesomeIcon
+            icon={faHeart}
+            id="icon-external-link"
+            className="icon-external-link" />
+          <span className="unfav">Make me unfavourite</span>
+        </button>
+
+        <div className="message">
+          {state.message}
+          {state.message ? <button type="button" onClick={() => { window.location.href = '/cookbook'; }}>My Cookbook</button> : ''}
+        </div>
         <div>
           <h3>{recipe.title}</h3>
           <small>
@@ -107,14 +145,6 @@ function RecipeCard(props) {
           {recipe.dishTypes && recipe.dishTypes.map(type => (
             <span key={type}>{type}</span>
           ))}
-        </div>
-        <div className="buttons-container">
-          <button type="button" onClick={() => { favouriteRecipe(recipe); }}>Add to Favourites</button>
-          <Link to="/recipes">
-            <button type="button" onClick={() => { unfavouriteRecipe(recipe.id); }}>Delete From Favourites</button>
-          </Link>
-          <Route
-            path="/recipes" />
         </div>
       </div>
     </div>

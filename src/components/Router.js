@@ -23,7 +23,7 @@ function AppMenu() {
         <ProtectedRoute exact path="/" Component={Home} />
         <ProtectedRoute path="/diet" Component={Diet} />
         <ProtectedRoute path="/fridge" Component={Fridge} />
-        <ProtectedRoute path="/recipes" Component={CookBook} />
+        <ProtectedRoute path="/cookbook" Component={CookBook} />
       </Switch>
 
     </Router>
