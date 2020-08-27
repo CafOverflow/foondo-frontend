@@ -351,13 +351,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .ingredients-list{
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 6px;
 }
 
 .ingredients-list img{
   height: 25px;
+}
+
+#icon-close{
+  color: #aaa;
 }
 
 
@@ -588,7 +594,27 @@ span:hover {
 /* Ingredients */
 .ingredients-wrapper {
   display: flex;
+  width: 250px;
   flex-direction: column;
+  background-color: #fff;
+  padding: 30px 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  opacity: 80%;
+  margin: 20px 0;
+}
+
+.diet-intolerance-wrapper{
+  background-color: white;
+  padding: 20px 30px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  opacity: 80%;
+  margin: 20px 0;
+}
+
+.diet-change{
+  color: #af4733;
 }
 
 /* Footer */
