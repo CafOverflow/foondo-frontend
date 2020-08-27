@@ -13,7 +13,7 @@ function SmallIngredientCard(props) {
     <div className="ingredients-list">
       <img src={ingredient.image} alt={ingredient} />
       {ingredient.name}
-      <FontAwesomeIcon icon={faTimesCircle} id="icon-close" className="fa-icon" onClick={() => deleteSingleIngredient(ingredient.id)}/>
+      <FontAwesomeIcon icon={faTimesCircle} id="icon-close" className="fa-icon" onClick={() => deleteSingleIngredient(ingredient.id)} />
     </div>
   );
 }

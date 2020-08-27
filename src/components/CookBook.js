@@ -8,12 +8,15 @@ function CookBook() {
     state, getBookmarkedRecipes,
   } = useContext(AppContext);
 
+  const recipes = state.favouriteRecipes;
+
   useEffect(() => {
     getBookmarkedRecipes();
     return () => {
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div className="wrapper">
       <header className="header">
@@ -22,7 +25,7 @@ function CookBook() {
       <h1>My Cook Book</h1>
       <div className="">
         <div className="page-header">My Cookbook</div>
-        <RecipesList recipes={state.favouriteRecipes} />
+        <RecipesList recipes={recipes} />
       </div>
     </div>
   );

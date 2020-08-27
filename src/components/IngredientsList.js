@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import SmallIngredientCard from './SmallIngredientCard';
@@ -10,10 +9,10 @@ function IngredientsList(props) {
       <div>
         <div className="ingredients-wrapper">
           <h4>My Ingredients</h4>
-          {ingredients.map((ingredient, index) => (
+          {ingredients.map(ingredient => (
             <SmallIngredientCard
               ingredient={ingredient}
-              key={index} />
+              key={ingredient.id} />
           ))}
         </div>
       </div>
