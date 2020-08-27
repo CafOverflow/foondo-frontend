@@ -99,7 +99,7 @@ function Diet() {
               isMulti
               onChange={handleChangeDiet}
               options={diets} />
-            <button type="button" className="diet-button" onClick={saveDiet(dietState)}>Save</button>
+            <button type="button" className="default-button" onClick={saveDiet(dietState)}>Save</button>
           </div>
           <div>My diet:</div>
           {typeof state.selectedDiet === 'string' ? <p>{state.selectedDiet}</p> : ''}
@@ -113,7 +113,7 @@ function Diet() {
               isMulti
               onChange={handleChangeIntolerancies}
               options={intolerances} />
-            <button type="button" className="diet-button" onClick={saveIntolerances}>Save</button>
+            <button type="button" className="default-button" onClick={saveIntolerances}>Save</button>
           </div>
           <div>My Intolerancies:</div>
           { state.selectedIntolerances.length === 0 || typeof state.selectedIntolerances == 'undefined' ? '' : state.selectedIntolerances.map((option, index) => <p key={index}>{option.value}</p>)}

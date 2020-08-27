@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-regular-svg-icons';
 import { AppContext } from './Context';
 
 function SmallIngredientCard(props) {
@@ -9,9 +11,9 @@ function SmallIngredientCard(props) {
   } = useContext(AppContext);
   return (
     <div className="ingredients-list">
-      {ingredient.name}
       <img src={ingredient.image} alt={ingredient} />
-      <button type="button" onClick={() => deleteSingleIngredient(ingredient.id)}>x</button>
+      {ingredient.name}
+      <FontAwesomeIcon icon={faTimesCircle} id="icon-close" className="fa-icon" onClick={() => deleteSingleIngredient(ingredient.id)}/>
     </div>
   );
 }
