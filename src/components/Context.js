@@ -11,6 +11,7 @@ function AppContextProvider({ children }) {
     selectedDiet: null,
     selectedIntolerances: [],
     userName: null,
+    recipeIngredients: [],
   });
 
   const handleEmailChange = name => {
@@ -29,13 +30,6 @@ function AppContextProvider({ children }) {
       ],
     }));
   };
-
-  // const deleteIngredient = ingredient => {
-  //   setState(prevState => ({
-  //     ...prevState,
-  //     ingredients: prevState.ingredients.filter(i => i !== ingredient),
-  //   }));
-  // };
 
   const showRecipes = recipe => {
     setState(prevState => ({
@@ -116,27 +110,38 @@ function AppContextProvider({ children }) {
       });
   };
 
-  const sendSingleIngredient = ingredient => {
-    return fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
-      .then(data => data.json())
-      .then(ingredients => {
-        if (ingredients.length > 0) return ingredients[0];
-        return undefined;
-      })
-      .then(ingredientObject => {
-        if (!ingredientObject) return undefined;
-        return fetchFoondoApi('POST', apiPaths.userFridge, { ingredients: [ingredientObject] })
-          .then(() => {
-            setState(prevState => ({
-              ...prevState,
-              ingredients: [
-                ...prevState.ingredients,
-                ingredientObject,
-              ],
-            }));
-          });
-      });
-  };
+  const sendSingleIngredient = ingredient => fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
+    .then(data => data.json())
+    .then(ingredients => {
+      if (ingredients.length > 0) return ingredients[0];
+      return undefined;
+    })
+    .then(ingredientObject => {
+      if (!ingredientObject) return undefined;
+      return fetchFoondoApi('POST', apiPaths.userFridge, { ingredients: [ingredientObject] })
+        .then(() => {
+          setState(prevState => ({
+            ...prevState,
+            ingredients: [
+              ...prevState.ingredients,
+              ingredientObject,
+            ],
+          }));
+        });
+    });
+
+  const getSingleIngredient = ingredient => fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
+    .then(data => data.json())
+    .then(array => array[0])
+    .then(ingredientObject => {
+      setState(prevState => ({
+        ...prevState,
+        recipeIngredients: [
+          ...prevState.recipeIngredients,
+          ingredientObject,
+        ],
+      }));
+    });
 
   const deleteSingleIngredient = ingredientId => {
     fetchFoondoApi('DELETE', apiPaths.userFridge, { ingredientIds: [ingredientId] })
@@ -154,7 +159,6 @@ function AppContextProvider({ children }) {
       handleEmailChange,
       showIngredients,
       showRecipes,
-      // deleteIngredient,
       favouriteRecipe,
       unfavouriteRecipe,
       getBookmarkedRecipes,
@@ -163,6 +167,7 @@ function AppContextProvider({ children }) {
       sendSingleIngredient,
       getIngredients,
       deleteSingleIngredient,
+      getSingleIngredient,
     }}>
       {children}
     </AppContext.Provider>

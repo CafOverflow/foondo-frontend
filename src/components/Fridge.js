@@ -99,10 +99,9 @@ function Fridge() {
                 Check my diet
               </button>
               {state.selectedDiet && state.selectedIntolerances
-                && (
+                && buttonState.showButton && (
                   <div className="diet-intolerance-wrapper">
                     <div>
-
                       Diet:
                       &nbsp;
                       {state.selectedDiet}
@@ -114,8 +113,8 @@ function Fridge() {
                           Intolerances:
                         &nbsp;
                           {state.selectedIntolerances.map(i => (
-                            <div>
-                              <span className="ingredient-intolerances" key={i.value}>{i.value}</span>
+                            <div key={i.value}>
+                              <span className="ingredient-intolerances">{i.value}</span>
                               <br />
                             </div>
                           ))}
@@ -130,7 +129,7 @@ function Fridge() {
                     <br />
                     <Link className="diet-change" to="/diet">Change</Link>
                   </div>
-                )}
+              )}
               {
                 buttonState.showButton
                   ? (

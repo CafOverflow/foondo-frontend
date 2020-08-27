@@ -27,8 +27,6 @@ function Search(props) {
       setState({ message: 'Please type something.' });
       return;
     }
-    // a function (coming from the props) that calls the backend
-    // to add a new item into User's Ingredients table in DB
     if (placeholder === 'a recipe') {
       fetchRecipes(value);
     } else {

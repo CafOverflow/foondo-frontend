@@ -68,9 +68,8 @@ button {
   padding-bottom: 10px;
 }
 
-
 .default-button {
-  background-color:  #af4733;
+  background-color: #af4733;
   color: #fff;
   text-decoration: none;
   margin: 5px auto;
@@ -83,7 +82,7 @@ button {
 
 .default-button:hover {
   cursor: pointer;
-  background-color: #5f2013 ;
+  background-color: #5f2013;
 }
 
 .default-button-hover {
@@ -330,7 +329,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   flex-direction: column;
   align-items: center;
   min-height: 500px;
-  margin-top:80px;
+  margin-top: 80px;
 }
 
 .page-wrapper a {
@@ -350,7 +349,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin: 10px auto;
 }
 
-.ingredients-list{
+.ingredients-list {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -358,14 +357,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
   padding: 6px;
 }
 
-.ingredients-list img{
+.ingredients-list img {
   height: 25px;
 }
 
-#icon-close{
+#icon-close {
   color: #aaa;
 }
-
 
 /* Diet */
 .diet-select {
@@ -529,19 +527,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .fav-button:hover {
-  cursor: pointer; 
+  cursor: pointer;
 }
-.fav, .unfav {
+.fav,
+.unfav {
   visibility: hidden;
 }
 .fav-button:hover .fav {
-  visibility: visible; 
+  visibility: visible;
 }
 .fav-button:hover .unfav {
-  visibility: visible; 
+  visibility: visible;
 }
-
-
 
 .instruction-name {
   font-weight: 600;
@@ -549,7 +546,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .recipe-container {
-  width: 100%;
+  width: 88%;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
@@ -557,7 +554,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  margin: 0 auto 50px;
+  margin: 10px auto 50px;
 }
 
 .image-container {
@@ -578,8 +575,23 @@ Note: Beware of modifying this element as it can break the animations - you shou
   text-align: left;
 }
 
+.instructions {
+  padding: 10px;
+}
+
+.instruction-step {
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px 20px;
+}
+
+.instruction-text {
+  margin: 10px 0;
+}
+
 .tags-container span {
-  border: 2px solid black;
+  border: 1px solid lightgrey;
   border-radius: 4px;
   display: inline-block;
   font-size: 12px;
@@ -587,24 +599,25 @@ Note: Beware of modifying this element as it can break the animations - you shou
   margin: 5px;
 }
 
-span:hover {
-  cursor: pointer;
-}
-
 /* Ingredients */
 .ingredients-wrapper {
   display: flex;
-  width: 250px;
+  min-width: 250px;
+  max-width: 300px;
   flex-direction: column;
   background-color: #fff;
   padding: 30px 30px;
   border: 1px solid #ccc;
   border-radius: 10px;
   opacity: 80%;
-  margin: 20px 0;
+  margin: 20px auto 5px;
 }
 
-.diet-intolerance-wrapper{
+.ingredients-list {
+  text-align: center;
+}
+
+.diet-intolerance-wrapper {
   background-color: white;
   padding: 20px 30px;
   border: 1px solid #ccc;
@@ -613,7 +626,7 @@ span:hover {
   margin: 20px 0;
 }
 
-.diet-change{
+.diet-change {
   color: #af4733;
 }
 

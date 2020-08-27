@@ -11,7 +11,7 @@ function IngredientsList(props) {
           {ingredients.map(ingredient => (
             <SmallIngredientCard
               ingredient={ingredient}
-              key={ingredient.id} />
+              key={ingredient.name} />
           ))}
         </div>
       </div>
