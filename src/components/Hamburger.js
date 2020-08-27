@@ -36,7 +36,7 @@ function Hamburger() {
         <Link onClick={closeMenu} to="/fridge">My Fridge</Link>
       </div>
       <div>
-        <Link onClick={closeMenu} to="/recipes">My Cook Book</Link>
+        <Link onClick={closeMenu} to="/cookbook">My Cook Book</Link>
       </div>
       <div>
         <Link onClick={logOut} exact="true" to="/">

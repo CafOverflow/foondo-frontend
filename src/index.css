@@ -322,14 +322,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 600px;
+  min-height: 600px;
 }
 
 .page-wrapper-search {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 500px;
+  min-height: 500px;
   margin-top:80px;
 }
 
@@ -512,6 +512,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 /* Recipe Card */
+.fav-button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+.fav-button:hover {
+  cursor: pointer;
+  mouseover: 
+}
+
+
 .instruction-name {
   font-weight: 600;
   font-size: 18px;
