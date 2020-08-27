@@ -48,26 +48,6 @@ button {
   outline: inherit;
 }
 
-/* Welcome page*/
-
-.entry-wrapper {
-  padding-top: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 550px;
-  background: url("./img/foondo_home_bg_mobile.png") no-repeat;
-  background-size: 435px;
-}
-
-.entry-wrapper h1 {
-  font-family: sheenline;
-  font-size: 100px;
-  margin: 0;
-  color: #525252;
-  padding-bottom: 10px;
-}
-
 .default-button {
   background-color: #af4733;
   color: #fff;
@@ -95,13 +75,34 @@ button {
   border: 1px solid #af4733;
 }
 
+/* Welcome page*/
+
+.entry-wrapper {
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 550px;
+  background: url("./img/foondo_home_bg_mobile.png") no-repeat;
+  background-size: 435px;
+}
+
+.entry-wrapper h1 {
+  font-family: sheenline;
+  font-size: 120px;
+  margin: 0;
+  color: #525252;
+  padding-bottom: 70px;
+  margin-top: -130px;
+}
+
 .entry-button {
   background-color: white;
   color: #af4733;
   text-decoration: none;
-  margin: 5px auto;
-  padding: 5px 0;
-  min-width: 200px;
+  margin: 12px auto;
+  padding: 7px 0;
+  min-width: 280px;
   border: 1px solid white;
   border-radius: 15px;
   font-size: 20px;
@@ -121,21 +122,35 @@ button {
   border: 1px solid #af4733;
 }
 
+.error-message{
+  height: 10px;
+  margin: 10px;
+  margin-top: -15px;
+  padding-top: 5px;
+  font-size: 14px;
+}
+
 /* Login */
 .login-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   background-color: white;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.7);
   width: 100%;
   height: 100%;
   padding-bottom: 330px;
+  margin-top: -40px;
+  border-radius: 23px;
+  -webkit-box-shadow: 10px 10px 13px 1px #999;
+  -moz-box-shadow: 10px 10px 13px 1px #999;
+  box-shadow: 10px 10px 13px 1px #999;
 }
 
 .login-title {
   color: #af4733;
-  font-size: 25px;
+  font-size: 30px;
+  padding: 50px 0 20px 0;
 }
 
 .login-form-input {
