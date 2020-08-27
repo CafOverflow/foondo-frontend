@@ -31,7 +31,7 @@ function Search(props) {
       fetchRecipes(value);
     } else {
       sendSingleIngredient(value)
-        .then(kappa => { if (!kappa) setState({ message: 'No matching ingredient found. ' }); });
+        .then(succeeded => { if (!succeeded) setState({ message: 'No matching ingredient found.' }); });
     }
     setState({ value: '' });
   };
