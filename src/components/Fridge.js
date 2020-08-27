@@ -18,7 +18,7 @@ function Fridge() {
   });
 
   const {
-    state, showRecipes, getDietFromDB, getIntoleranciesFromDB, getIngredients,
+    state, showRecipes, getDietFromDB, getIntolerancesFromDB, getIngredients,
   } = useContext(AppContext);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function Fridge() {
 
   const fetchDiet = () => {
     getDietFromDB();
-    getIntoleranciesFromDB();
+    getIntolerancesFromDB();
     setButtonState({
       showButton: true,
     });
