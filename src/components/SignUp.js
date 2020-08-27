@@ -27,6 +27,9 @@ function SignUp() {
       <h1>foondo</h1>
       <form onSubmit={submitNewUser} className="login-form">
         <div className="login-title">sign up</div>
+        <div id="error-message" className="error-message">
+          {message.message}
+        </div>
         <input
           autoComplete="e-mail"
           id="email"
@@ -45,7 +48,6 @@ function SignUp() {
           className="entry-button login-form-input"
           type="password"
           placeholder="confirm password" />
-        {message.message}
         <input
           className="entry-button login-form-button"
           type="submit"
