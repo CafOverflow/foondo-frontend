@@ -32,6 +32,7 @@ const fetchFoondoApi = (method, path, params) => {
 };
 
 const apiPaths = {
+  user: 'user/',
   recipeBookmarks: 'recipes/bookmarks/',
   userDiet: 'user/diet/',
   userIntolerances: 'user/intolerances/',

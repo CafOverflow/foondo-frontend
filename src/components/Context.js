@@ -117,27 +117,25 @@ function AppContextProvider({ children }) {
       });
   };
 
-  const sendSingleIngredient = ingredient => {
-    return fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
-      .then(data => data.json())
-      .then(ingredients => {
-        if (ingredients.length > 0) return ingredients[0];
-        return undefined;
-      })
-      .then(ingredientObject => {
-        if (!ingredientObject) return undefined;
-        return fetchFoondoApi('POST', apiPaths.userFridge, { ingredients: [ingredientObject] })
-          .then(() => {
-            setState(prevState => ({
-              ...prevState,
-              ingredients: [
-                ...prevState.ingredients,
-                ingredientObject,
-              ],
-            }));
-          });
-      });
-  };
+  const sendSingleIngredient = ingredient => fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
+    .then(data => data.json())
+    .then(ingredients => {
+      if (ingredients.length > 0) return ingredients[0];
+      return undefined;
+    })
+    .then(ingredientObject => {
+      if (!ingredientObject) return undefined;
+      return fetchFoondoApi('POST', apiPaths.userFridge, { ingredients: [ingredientObject] })
+        .then(() => {
+          setState(prevState => ({
+            ...prevState,
+            ingredients: [
+              ...prevState.ingredients,
+              ingredientObject,
+            ],
+          }));
+        });
+    });
 
   const deleteSingleIngredient = ingredientId => {
     fetchFoondoApi('DELETE', apiPaths.userFridge, { ingredientIds: [ingredientId] })
