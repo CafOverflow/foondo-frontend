@@ -130,19 +130,6 @@ function AppContextProvider({ children }) {
         });
     });
 
-  const getSingleIngredient = ingredient => fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
-    .then(data => data.json())
-    .then(array => array[0])
-    .then(ingredientObject => {
-      setState(prevState => ({
-        ...prevState,
-        recipeIngredients: [
-          ...prevState.recipeIngredients,
-          ingredientObject,
-        ],
-      }));
-    });
-
   const deleteSingleIngredient = ingredientId => {
     fetchFoondoApi('DELETE', apiPaths.userFridge, { ingredientIds: [ingredientId] })
       .then(() => {
@@ -167,7 +154,6 @@ function AppContextProvider({ children }) {
       sendSingleIngredient,
       getIngredients,
       deleteSingleIngredient,
-      getSingleIngredient,
     }}>
       {children}
     </AppContext.Provider>
