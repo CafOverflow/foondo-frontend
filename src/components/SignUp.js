@@ -10,6 +10,7 @@ function SignUp() {
 
   return (
     <div className="entry-wrapper">
+      <h1>foondo</h1>
       <form className="login-form">
         <div className="login-title">sign up</div>
         <input
