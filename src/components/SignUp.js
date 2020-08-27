@@ -27,16 +27,19 @@ function SignUp() {
       <form onSubmit={submitNewUser} className="login-form">
         <div className="login-title">sign up</div>
         <input
+          autoComplete="e-mail"
           id="email"
           className="entry-button login-form-input"
           type="text"
           placeholder="email" />
         <input
+          autoComplete="desired password"
           id="password"
           className="entry-button login-form-input"
           type="password"
           placeholder="password" />
         <input
+          autoComplete="repeat password"
           id="password2"
           className="entry-button login-form-input"
           type="password"
