@@ -523,9 +523,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 .fav-button:hover {
-  cursor: pointer;
-  mouseover: 
+  cursor: pointer; 
 }
+.fav, .unfav {
+  visibility: hidden;
+}
+.fav-button:hover .fav {
+  visibility: visible; 
+}
+.fav-button:hover .unfav {
+  visibility: visible; 
+}
+
 
 
 .instruction-name {

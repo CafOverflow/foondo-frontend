@@ -1,9 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { Link, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-// import BackButton from './BackButton';
 import { AppContext } from './Context';
 
 const filterByID = (id, props) => props.recipes.find(recipe => recipe.id === id);
@@ -95,6 +93,9 @@ function RecipeCard(props) {
   };
 
   const recipe = getRecipeID(props);
+
+  window.scrollTo(0, 0);
+
   return (
     <div className="recipe-container">
       <div className="image-container">
@@ -103,7 +104,9 @@ function RecipeCard(props) {
           style={{ backgroundImage: `url(${recipe.image})` }} />
       </div>
       <div className="recipe-info">
+
         <button title="Make me favourite" className="fav-button" type="button" onClick={() => makeRecipeFavourite(recipe)}>
+          <span className="fav">Make me favourite</span>
           <FontAwesomeIcon
             icon={faSolidHeart}
             id="icon-external-link"
@@ -114,7 +117,9 @@ function RecipeCard(props) {
             icon={faHeart}
             id="icon-external-link"
             className="icon-external-link" />
+          <span className="unfav">Make me unfavourite</span>
         </button>
+
         <div className="message">
           {state.message}
           {state.message ? <button type="button" onClick={() => { window.location.href = '/cookbook'; }}>My Cookbook</button> : ''}
@@ -140,14 +145,6 @@ function RecipeCard(props) {
           {recipe.dishTypes && recipe.dishTypes.map(type => (
             <span key={type}>{type}</span>
           ))}
-        </div>
-        <div className="buttons-container">
-          <button type="button" onClick={() => { favouriteRecipe(recipe); }}>Add to Favourites</button>
-          <Link to="/cookbook">
-            <button type="button" onClick={() => { unfavouriteRecipe(recipe.id); }}>Delete From Favourites</button>
-          </Link>
-          <Route
-            path="/cookbook" />
         </div>
       </div>
     </div>
