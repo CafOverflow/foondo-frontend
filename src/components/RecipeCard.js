@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt, faHeart as faSolidHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { AppContext } from './Context';
+import IngredientsList from './IngredientsList';
 
 const filterByID = (id, props) => props.recipes.find(recipe => recipe.id === id);
 
@@ -15,50 +16,31 @@ const getRecipeID = props => {
 const ingredientList = extendedIngredients => (
   <div>
     <h4>Ingredients</h4>
-    <ul className="recipe-ingredients">
-      {extendedIngredients.map(ingredient => (
-        <li key={ingredient.id}>
-          {Math.round(ingredient.measures.metric.amount)}
-          {' '}
-          {ingredient.measures.metric.unitShort}
-          {' '}
-          {ingredient.name}
-        </li>
-      ))}
-    </ul>
+    <IngredientsList ingredients={extendedIngredients} />
   </div>
 );
 
 const instructionsList = (instructions, sourceUrl) => (
-  <div>
+  <div className="instructions">
     <h4>Detailed Instructions</h4>
     {instructions.map(instruction => (
       <div key={new Date()}>
         <div className="instruction-name">{instruction.name}</div>
         {instruction.steps.map(step => (
-          <div key={step.number}>
-            <br />
-            <div>
-              <b>
-                <span>Step number </span>
-                <span>
-                  {step.number}
-                  .
-                </span>
-              </b>
+          <div key={step.number} className="instruction-step">
+            <div className="instruction-step-name">
+              <span>Step </span>
+              {step.number}
             </div>
-            {step.step}
-            <br />
-            <br />
+            <div className="instruction-text">{step.step}</div>
             {step.ingredients.length > 0
-              && <span><i>Ingredients for this step: </i></span>}
+              && <span><i>Ingredients: </i></span>}
             {step.ingredients.map(ingredient => (
               <span key={ingredient.name}>
                 {ingredient.name}
                 {', '}
               </span>
             ))}
-            <br />
           </div>
         ))}
       </div>
@@ -126,6 +108,11 @@ function RecipeCard(props) {
         </div>
         <div>
           <h3>{recipe.title}</h3>
+          <div className="tags-container">
+            {recipe.dishTypes && recipe.dishTypes.map(type => (
+              <span key={type}>{type}</span>
+            ))}
+          </div>
           <small>
             <span>Cooking Time: </span>
             {recipe.readyInMinutes}
@@ -140,12 +127,6 @@ function RecipeCard(props) {
         {recipe.extendedIngredients && ingredientList(recipe.extendedIngredients)}
         {recipe.analyzedInstructions
         && instructionsList(recipe.analyzedInstructions, recipe.sourceUrl)}
-
-        <div className="tags-container">
-          {recipe.dishTypes && recipe.dishTypes.map(type => (
-            <span key={type}>{type}</span>
-          ))}
-        </div>
       </div>
     </div>
   );

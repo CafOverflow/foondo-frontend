@@ -12,6 +12,16 @@ function SmallIngredientCard(props) {
   return (
     <div className="ingredients-list">
       <img src={ingredient.image} alt={ingredient} />
+      {ingredient.measures
+      && ingredient.measures.metric.amount
+      && ingredient.measures.metric.unitShort ? (
+        <>
+          {Math.round(ingredient.measures.metric.amount)}
+          {' '}
+          {ingredient.measures.metric.unitShort}
+          {' '}
+        </>
+        ) : ''}
       {ingredient.name}
       <FontAwesomeIcon icon={faTimesCircle} id="icon-close" className="fa-icon" onClick={() => deleteSingleIngredient(ingredient.id)} />
     </div>
@@ -23,6 +33,12 @@ SmallIngredientCard.propTypes = {
     name: PropTypes.string,
     image: PropTypes.string,
     id: PropTypes.string,
+    measures: PropTypes.shape({
+      metric: PropTypes.shape({
+        unitShort: PropTypes.string,
+        amount: PropTypes.number,
+      }),
+    }),
   }),
 };
 

@@ -12,6 +12,7 @@ function AppContextProvider({ children }) {
     selectedDiet: null,
     selectedIntolerances: [],
     userName: null,
+    recipeIngredients: [],
   });
 
   const handleEmailChange = name => {
@@ -30,13 +31,6 @@ function AppContextProvider({ children }) {
       ],
     }));
   };
-
-  // const deleteIngredient = ingredient => {
-  //   setState(prevState => ({
-  //     ...prevState,
-  //     ingredients: prevState.ingredients.filter(i => i !== ingredient),
-  //   }));
-  // };
 
   const showRecipes = recipe => {
     setState(prevState => ({
@@ -153,7 +147,6 @@ function AppContextProvider({ children }) {
       handleEmailChange,
       showIngredients,
       showRecipes,
-      // deleteIngredient,
       favouriteRecipe,
       unfavouriteRecipe,
       getBookmarkedRecipes,
