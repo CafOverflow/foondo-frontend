@@ -32,7 +32,8 @@ function Search(props) {
     if (placeholder === 'a recipe') {
       fetchRecipes(value);
     } else {
-      sendSingleIngredient(value);
+      sendSingleIngredient(value)
+        .then(kappa => { if (!kappa) setState({ message: 'No matching ingredient found. ' }); });
     }
     setState({ value: '' });
   };

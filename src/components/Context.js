@@ -117,11 +117,15 @@ function AppContextProvider({ children }) {
   };
 
   const sendSingleIngredient = ingredient => {
-    fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
+    return fetchFoondoApi('GET', `${apiPaths.foodIngredientsAutocomplete}${ingredient}`)
       .then(data => data.json())
-      .then(ingredients => ingredients[0])
+      .then(ingredients => {
+        if (ingredients.length > 0) return ingredients[0];
+        return undefined;
+      })
       .then(ingredientObject => {
-        fetchFoondoApi('POST', apiPaths.userFridge, { ingredients: [ingredientObject] })
+        if (!ingredientObject) return undefined;
+        return fetchFoondoApi('POST', apiPaths.userFridge, { ingredients: [ingredientObject] })
           .then(() => {
             setState(prevState => ({
               ...prevState,
