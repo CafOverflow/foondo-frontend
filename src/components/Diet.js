@@ -1,5 +1,4 @@
 /* eslint-disable eqeqeq */
-/* eslint-disable react/no-array-index-key */
 import React, { useContext, useEffect, useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
@@ -116,7 +115,7 @@ function Diet() {
             <button type="button" className="default-button" onClick={saveIntolerances}>Save</button>
           </div>
           <div>My Intolerancies:</div>
-          { state.selectedIntolerances.length === 0 || typeof state.selectedIntolerances == 'undefined' ? '' : state.selectedIntolerances.map((option, index) => <p key={index}>{option.value}</p>)}
+          { state.selectedIntolerances.length === 0 || typeof state.selectedIntolerances == 'undefined' ? '' : state.selectedIntolerances.map(option => <p key={option.value}>{option.value}</p>)}
         </div>
       </div>
     </div>
