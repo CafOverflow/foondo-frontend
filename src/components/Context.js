@@ -78,6 +78,7 @@ function AppContextProvider({ children }) {
           ...prevState,
           favouriteRecipes: json,
         }));
+        localStorage.setItem('recipes', JSON.stringify(json));
       });
   };
 

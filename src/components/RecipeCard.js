@@ -1,25 +1,17 @@
-/* eslint-disable max-len */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/no-danger */
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link, Route } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
 import BackButton from './BackButton';
 import { AppContext } from './Context';
 
-// eslint-disable-next-line eqeqeq
-const filterByID = (id, recipes) => recipes.find(recipe => recipe.id == id);
+const filterByID = (id, props) => props.recipes.find(recipe => recipe.id === id);
 
-const getRecipeByID = recipes => {
-  // const recipeID = props.match.url.slice(9);
-  const recipeID = (window.location.href).split('/')[4];
-  const recipe = filterByID(recipeID, recipes);
+const getRecipeID = props => {
+  const recipeID = props.match.url.slice(9);
+  const recipe = filterByID(recipeID, props);
   return recipe;
 };
-
-// const summary = recipe => <p dangerouslySetInnerHTML={{ __html: recipe.summary }} />;
 
 const ingredientList = extendedIngredients => (
   <div>
@@ -41,8 +33,8 @@ const ingredientList = extendedIngredients => (
 const instructionsList = (instructions, sourceUrl) => (
   <div>
     <h4>Detailed Instructions</h4>
-    {instructions.map((instruction, index) => (
-      <div key={index}>
+    {instructions.map(instruction => (
+      <div key={new Date()}>
         <div className="instruction-name">{instruction.name}</div>
         {instruction.steps.map(step => (
           <div key={step.number}>
@@ -62,7 +54,7 @@ const instructionsList = (instructions, sourceUrl) => (
             {step.ingredients.length > 0
               && <span><i>Ingredients for this step: </i></span>}
             {step.ingredients.map(ingredient => (
-              <span key={ingredient.id}>
+              <span key={ingredient.name}>
                 {ingredient.name}
                 {', '}
               </span>
@@ -82,20 +74,9 @@ const instructionsList = (instructions, sourceUrl) => (
   </div>
 );
 
-// console.log('not entered the function');
-
 function RecipeCard(props) {
-  const { recipes } = props;
-  // console.log('entered function');
-
-  useEffect(() => {
-    // console.log('effect');
-  });
-
   const { favouriteRecipe, unfavouriteRecipe } = useContext(AppContext);
-  // console.log('context', state.recipes);
-  // const recipe = getRecipeByID(state.recipes);
-  const recipe = getRecipeByID(recipes);
+  const recipe = getRecipeID(props);
   return (
     <div className="recipe-container">
       <Link to="/recipes"><BackButton /></Link>
@@ -118,16 +99,15 @@ function RecipeCard(props) {
             {recipe.servings}
           </small>
         </div>
-        {/* {recipe.summary && summary(recipe)} */}
         {recipe.extendedIngredients && ingredientList(recipe.extendedIngredients)}
-        {recipe.analyzedInstructions && instructionsList(recipe.analyzedInstructions, recipe.sourceUrl)}
+        {recipe.analyzedInstructions
+        && instructionsList(recipe.analyzedInstructions, recipe.sourceUrl)}
 
         <div className="tags-container">
           {recipe.dishTypes && recipe.dishTypes.map(type => (
             <span key={type}>{type}</span>
           ))}
         </div>
-        {/* add functionality to buttons to save a recipe as favourite in DB and delete */}
         <div className="buttons-container">
           <button type="button" onClick={() => { favouriteRecipe(recipe); }}>Add to Favourites</button>
           <Link to="/recipes">
@@ -140,27 +120,5 @@ function RecipeCard(props) {
     </div>
   );
 }
-RecipeCard.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  recipes: PropTypes.array,
-  recipe: PropTypes.shape({
-    sourceUrl: PropTypes.string,
-    image: PropTypes.string,
-    title: PropTypes.string,
-    author: PropTypes.string,
-    readyInMinutes: PropTypes.number,
-    servings: PropTypes.number,
-    summary: PropTypes.string,
-    // eslint-disable-next-line react/forbid-prop-types
-    extendedIngredients: PropTypes.array,
-    // eslint-disable-next-line react/forbid-prop-types
-    dishTypes: PropTypes.array,
-  }),
-};
-
-RecipeCard.defaultProps = {
-  recipe: {},
-  recipes: [],
-};
 
 export default RecipeCard;

@@ -109,7 +109,7 @@ function Fridge() {
                     {state.selectedIntolerances.length > 0 ? (
                       <div>
                         Intolerances:
-                        {state.selectedIntolerances.map(i => <span>{i.value}</span>)}
+                        {state.selectedIntolerances.map(i => <span key={i.value}>{i.value}</span>)}
                       </div>
                     ) : (
                       <div>
