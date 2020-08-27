@@ -45,7 +45,7 @@ function Search(props) {
         <FontAwesomeIcon icon={faSearch} id="iconSearch" className="icon-search" />
         <input
           className="search-term"
-          type="text"
+          type="search"
           value={state.value}
           onChange={handleValueChange}
           placeholder={`find ${placeholder}...`} />
