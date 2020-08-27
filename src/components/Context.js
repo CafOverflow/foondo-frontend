@@ -88,7 +88,7 @@ function AppContextProvider({ children }) {
       });
   };
 
-  const getIntoleranciesFromDB = () => {
+  const getIntolerancesFromDB = () => {
     fetchFoondoApi('GET', apiPaths.userIntolerances)
       .then(data => data.json())
       .then(json => {
@@ -152,7 +152,7 @@ function AppContextProvider({ children }) {
       unfavouriteRecipe,
       getBookmarkedRecipes,
       getDietFromDB,
-      getIntoleranciesFromDB,
+      getIntolerancesFromDB,
       sendSingleIngredient,
       getIngredients,
       deleteSingleIngredient,

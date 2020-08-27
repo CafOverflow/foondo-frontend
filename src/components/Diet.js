@@ -38,7 +38,7 @@ const animatedComponents = makeAnimated();
 
 function Diet() {
   const {
-    state, getDietFromDB, getIntoleranciesFromDB,
+    state, getDietFromDB, getIntolerancesFromDB,
   } = useContext(AppContext);
 
   const [dietState, setDiet] = useState({
@@ -63,7 +63,7 @@ function Diet() {
     }
   };
 
-  const handleChangeIntolerancies = selectedIntolerances => {
+  const handleChangeIntolerances = selectedIntolerances => {
     setIntolerances(
       selectedIntolerances,
     );
@@ -76,7 +76,7 @@ function Diet() {
 
   useEffect(() => {
     getDietFromDB();
-    getIntoleranciesFromDB();
+    getIntolerancesFromDB();
     return () => {
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -110,11 +110,11 @@ function Diet() {
               closeMenuOnSelect={false}
               components={animatedComponents}
               isMulti
-              onChange={handleChangeIntolerancies}
+              onChange={handleChangeIntolerances}
               options={intolerances} />
             <button type="button" className="default-button" onClick={saveIntolerances}>Save</button>
           </div>
-          <div>My Intolerancies:</div>
+          <div>My Intolerances:</div>
           { state.selectedIntolerances.length === 0 || typeof state.selectedIntolerances == 'undefined' ? '' : state.selectedIntolerances.map(option => <p key={option.value}>{option.value}</p>)}
         </div>
       </div>
